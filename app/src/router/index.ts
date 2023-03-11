@@ -31,9 +31,14 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: "/start",
-    name: "Start",
-    component: () => import("@/views/StartPage.vue"),
+    path: "/startpage",
+    name: "StartPage",
+    component: () => import("@/views/userviews/authviews/StartPage.vue"),
+  },
+  {
+    path: "/typeuserpage",
+    name: "TypeUserPage",
+    component: () => import("@/views/userviews/authviews/TypeUserPage.vue"),
   },
   {
     path: "/about",
@@ -52,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/login",
-    name: "login",
+    name: "Login",
     component: () => import("@/views/LoginPage.vue"),
   },
 ];

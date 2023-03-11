@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-      <img src="../img/manchota.jpg" class="mancha1">
+      <img src="../../../img/manchota.jpg" class="mancha1">
       <div class="joint">
           <span class="h1">¡Bienvenido!</span>
           <span class="h2">Crea tu cuenta y disfruta de las promociones disponibles para tí</span>
@@ -81,7 +81,7 @@ import {
 .cbutton:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-.button:active {
+.cbutton:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
@@ -90,10 +90,16 @@ import {
 .button {
   font-size: 100%;
   color: rgb(96, 124, 96);
-  font-weight: 800;
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
 }
+
+.button:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
+
+
 
 </style>
 
