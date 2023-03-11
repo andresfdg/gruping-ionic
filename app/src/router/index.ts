@@ -6,7 +6,7 @@ import AboutPage from "../views/AboutPage.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/about",
+    redirect: "/startpage",
   },
   {
     path: "/tabs/",

@@ -1,61 +1,63 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-      <img src="../../../img/manchota.jpg" class="mancha1">
+      <img src="../../../img/manchota.jpg" class="mancha1" />
       <div class="joint">
-          <span class="h1">¡Bienvenido!</span>
-          <span class="h2">Crea tu cuenta y disfruta de las promociones disponibles para tí</span>
-          <div class="cbutton"><button class="button">Empecemos</button></div>
+        <span class="h1">¡Bienvenido!</span>
+        <span class="h2"
+          >Crea tu cuenta y disfruta de las promociones disponibles para
+          tí</span
+        >
+        <div class="cbutton" @click="TypeUser">
+          <button class="button">Empecemos</button>
+        </div>
       </div>
     </ion-content>
   </ion-page>
 </template>
-  
+
 <script setup lang="ts">
-  
+import { IonPage, IonContent } from "@ionic/vue";
 
-import {
-    IonPage,
-    IonContent,
-} from "@ionic/vue";
-  </script>
+import { useRouter } from "vue-router";
 
-  
+const router = useRouter();
+
+const TypeUser = () => {
+  router.push("/typeuserpage");
+};
+</script>
+
 <style scoped lang="scss">
-
-.h1 
-{
-    padding: 1px;
-    margin-left: 1px;
-    font-family: sans-serif;
-    font-weight: 1000;
-    font-size: 270%;
-    color: rgb(130, 0, 255);
-    
+.h1 {
+  padding: 1px;
+  margin-left: 1px;
+  font-family: sans-serif;
+  font-weight: 1000;
+  font-size: 270%;
+  color: rgb(130, 0, 255);
 }
 
 .h2 {
-    width: 100%;
-    padding: 1px;
-    margin-left: 1px;
-    font-family: sans-serif;
-    font-size: 110%;
-    color: rgb(130, 0, 255);
-
+  width: 100%;
+  padding: 1px;
+  margin-left: 1px;
+  font-family: sans-serif;
+  font-size: 110%;
+  color: rgb(130, 0, 255);
 }
 
-.joint{
+.joint {
   display: flex;
   flex-direction: column;
   padding: 30px;
   border-radius: 15px;
   justify-content: end;
   text-align: center;
-  position:relative;
-  
+  position: relative;
 }
 
-.mancha1{
+.mancha1 {
   height: 70%;
   width: 100%;
 }
@@ -73,13 +75,12 @@ import {
   padding-bottom: 10px;
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
-  box-shadow: inset 0 -0.1em 0.3em rgba(0,0,0,0.1),
-  0.3em 0.3em 1em rgba(0,0,0,0.3);
-  
-  
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 .cbutton:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .cbutton:active {
   background-color: #3e8e41;
@@ -98,9 +99,4 @@ import {
   background-color: #3e8e41;
   transform: translateY(4px);
 }
-
-
-
 </style>
-
-  
