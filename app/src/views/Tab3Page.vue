@@ -19,7 +19,7 @@
         </div>
 
         <div class="swiper">
-          <swiper :modules="data.modules" :slides-per-view="2">
+          <swiper :modules="data.modules" :slides-per-view="2" class="swiperr">
             <swiper-slide v-for="i in data.stores" :key="i">
               <div>
                 <StoreCard :img="i.img"></StoreCard>
@@ -50,7 +50,23 @@
             <div>
               <span> ver todos </span>
             </div>
+            
           </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br><br>
+          <br>
+          
+
         </div>
       </IonContent>
     </ion-content>
@@ -156,4 +172,5 @@ ion-searchbar {
   margin-right: 15px;
   margin-left: 15px;
 }
+
 </style>
