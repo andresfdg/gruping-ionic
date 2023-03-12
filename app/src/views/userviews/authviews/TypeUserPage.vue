@@ -13,8 +13,8 @@
               <img src="../../../img/Staruser.jpg" class="ima" />
             </div>
           </div>
-          <div class="cbutton">
-            <button class="button" @click="tab1">Continuar</button>
+          <div class="cbutton" @click="tab1">
+            <button class="button">Continuar</button>
           </div>
         </div>
       </div>

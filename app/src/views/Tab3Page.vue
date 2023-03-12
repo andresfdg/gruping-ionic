@@ -50,23 +50,15 @@
             <div>
               <span> ver todos </span>
             </div>
-            
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br><br>
-          <br>
-          
 
+          <div>
+            <div ref="el" class="box">
+              <div v-for="item in da" :key="item">
+                {{ item }}
+              </div>
+            </div>
+          </div>
         </div>
       </IonContent>
     </ion-content>
@@ -93,9 +85,22 @@ import {
   IonCardSubtitle,
   IonCardTitle,
 } from "@ionic/vue";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import ModalCompo from "../components/ModalCompo.vue";
 import StoreCard from "../components/StoreCard.vue";
+import { useInfiniteScroll } from "@vueuse/core";
+
+const el = ref(null);
+const da = ref([1, 2, 3, 4, 5, 6]);
+
+useInfiniteScroll(
+  el,
+  () => {
+    // load more
+    da.value.push("2");
+  },
+  { distance: 10 }
+);
 
 const data = reactive({
   stores: [],
@@ -172,5 +177,12 @@ ion-searchbar {
   margin-right: 15px;
   margin-left: 15px;
 }
-
+.box {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  margin-top: 300px;
+}
 </style>

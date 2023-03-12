@@ -6,7 +6,7 @@ import AboutPage from "../views/AboutPage.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/startpage",
+    redirect: "/engine",
   },
   {
     path: "/tabs/",
@@ -27,6 +27,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "tab3",
         component: () => import("@/views/Tab3Page.vue"),
+      },
+      {
+        path: "tab4",
+        component: () => import("@/views/Tab4Page.vue"),
       },
     ],
   },
@@ -59,6 +63,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login",
     name: "Login",
     component: () => import("@/views/LoginPage.vue"),
+  },
+  {
+    path: "/engine",
+    name: "Engine",
+    component: () => import("@/views/EngineView.vue"),
   },
 ];
 
