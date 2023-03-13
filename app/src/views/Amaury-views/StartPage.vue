@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-      <img src="../../../img/manchota.jpg" class="mancha1" />
+      <img src="../../../public/img/manchota.jpg" class="mancha1" />
       <div class="joint">
         <span class="h1">¡Bienvenido!</span>
         <span class="h2"

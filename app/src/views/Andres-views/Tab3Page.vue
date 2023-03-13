@@ -104,8 +104,8 @@ import {
   IonLabel,
 } from "@ionic/vue";
 import { onMounted, reactive, ref } from "vue";
-import ModalCompo from "../components/ModalCompo.vue";
-import StoreCard from "../components/StoreCard.vue";
+import ModalCompo from "../../components/ModalCompo.vue";
+import StoreCard from "../../components/StoreCard.vue";
 import InfiPage from "@/components/InfiPage.vue";
 
 const data = reactive({
@@ -157,7 +157,7 @@ ion-searchbar {
 }
 
 .block1 {
-  background-color: #a5a6f6;
+  background-color: #3ff607;
 }
 .block2 {
   --background: red;

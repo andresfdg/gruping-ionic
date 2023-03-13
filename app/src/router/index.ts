@@ -18,36 +18,36 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "tab1",
-        component: () => import("@/views/Tab1Page.vue"),
+        component: () => import("@/views/Andres-views/Tab1Page.vue"),
       },
       {
         path: "tab2",
-        component: () => import("@/views/Tab2Page.vue"),
+        component: () => import("@/views/Andres-views/Tab2Page.vue"),
       },
       {
         path: "tab3",
-        component: () => import("@/views/Tab3Page.vue"),
+        component: () => import("@/views/Andres-views/Tab3Page.vue"),
       },
       {
         path: "tab4",
-        component: () => import("@/views/Tab4Page.vue"),
+        component: () => import("@/views/Andres-views/Tab4Page.vue"),
       },
     ],
   },
   {
     path: "/startpage",
     name: "StartPage",
-    component: () => import("@/views/userviews/authviews/StartPage.vue"),
+    component: () => import("@/views/Amaury-views/StartPage.vue"),
   },
   {
     path: "/typeuserpage",
     name: "TypeUserPage",
-    component: () => import("@/views/userviews/authviews/TypeUserPage.vue"),
+    component: () => import("@/views/Amaury-views/TypeUserPage.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/views/userviews/authviews/LoginPage.vue"),
+    component: () => import("@/views/Amaury-views/LoginPage.vue"),
   },
   {
     path: "/about",

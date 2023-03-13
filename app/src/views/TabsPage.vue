@@ -5,18 +5,18 @@
         <ion-router-outlet></ion-router-outlet>
         <ion-tab-bar slot="bottom">
           <ion-tab-button tab="tab1" href="/tabs/tab1">
-            <img src="../img/HomeIcon.png" alt="" class="tadicon" />
+            <img src="../../public/img/HomeIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
 
           <ion-tab-button tab="tab2" href="/tabs/tab2">
-            <img src="../img/CarIcon.png" alt="" class="tadicon" />
+            <img src="../../public/img/CarIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
           <ion-tab-button tab="tab3" href="/tabs/tab3">
-            <img src="../img/GroupIcon.png" alt="" class="tadicon" />
+            <img src="../../public/img/GroupIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
 
           <ion-tab-button tab="tab4" href="/tabs/tab4">
-            <img src="../img/SettingIcon.png" alt="" class="tadicon" />
+            <img src="../../public/img/SettingIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
         </ion-tab-bar>
       </ion-tabs>

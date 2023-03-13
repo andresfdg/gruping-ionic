@@ -2,22 +2,15 @@
   <ion-page>
     <ion-content class="block1">
       <div class="principal">
-        <img src="../../../img/manchalog.png" class="mancha1" />
-        <div class="jointd">
-        <span class="h1">¡Bienvenido!</span>
-        <span class="h2"
-          >Crea tu cuenta y disfruta de las promociones disponibles para
-          tí</span
-        >
-        </div>
+        <img src="../../../public/img/manchatype.jpg" class="mancha1" />
         <div class="joint">
           <span class="h1">Elige tu tipo</span>
           <div class="second">
             <div class="blank1">
-              <img src="../../../img/Startienda.jpg" class="ima" />
+              <img src="../../../public/img/Startienda.jpg" class="ima" />
             </div>
             <div class="blank2">
-              <img src="../../../img/Staruser.jpg" class="ima" />
+              <img src="../../../public/img/Staruser.jpg" class="ima" />
             </div>
           </div>
           <div class="cbutton" @click="tab1">
@@ -57,18 +50,8 @@ const tab1 = () => {
 }
 
 .mancha1 {
-  height: 40%;
+  height: 55%;
   width: 100%;
-}
-
-.jointd {
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  border-radius: 15px;
-  justify-content: end;
-  text-align: center;
-  position: relative;
 }
 
 .joint {
@@ -82,17 +65,6 @@ const tab1 = () => {
   border-radius: 15px;
   justify-content: start;
   text-align: center;
-  
-  h1 {
-  padding: 1px;
-  margin-left: 1px;
-  font-family: sans-serif;
-  font-weight: 1000;
-  font-size: 200%;
-  color: rgb(130, 0, 255);
-  margin-bottom: 10px;
-}
-  
 }
 
 .second {
@@ -138,7 +110,7 @@ const tab1 = () => {
   font-family: sans-serif;
   font-weight: 1000;
   font-size: 200%;
-  color: rgb(130, 0, 255);
+  color: rgba(78, 102, 78, 0.466);
   margin-bottom: 10px;
 }
 
@@ -181,4 +153,3 @@ const tab1 = () => {
   border-radius: 10px;
 }
 </style>
-

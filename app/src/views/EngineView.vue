@@ -25,6 +25,6 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .color {
-  --background: url(../img/engine.png) 0 0/100% 100% no-repeat;
+  --background: url(../../public/img/engine.png) 0 0/100% 100% no-repeat;
 }
 </style>
