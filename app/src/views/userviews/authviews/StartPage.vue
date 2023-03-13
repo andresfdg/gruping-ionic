@@ -34,7 +34,7 @@ const TypeUser = () => {
   margin-left: 1px;
   font-family: sans-serif;
   font-weight: 1000;
-  font-size: 270%;
+  font-size: 200%;
   color: rgb(130, 0, 255);
 }
 

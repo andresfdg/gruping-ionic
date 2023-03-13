@@ -45,6 +45,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/userviews/authviews/TypeUserPage.vue"),
   },
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/userviews/authviews/LoginPage.vue"),
+  },
+  {
     path: "/about",
     name: "About",
     component: () => import("@/views/AboutPage.vue"),
@@ -58,11 +63,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/new",
     name: "New",
     component: () => import("@/views/NewPage.vue"),
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/views/LoginPage.vue"),
   },
   {
     path: "/engine",
