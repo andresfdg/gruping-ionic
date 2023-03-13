@@ -157,7 +157,7 @@ ion-searchbar {
 }
 
 .block1 {
-  background-color: #a5a6f6;
+  background-color: #070bf6;
 }
 .block2 {
   --background: red;
