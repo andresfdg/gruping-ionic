@@ -89,13 +89,13 @@ const tab1 = () => {
     font-family: sans-serif;
     font-weight: 1000;
     font-size: 200%;
-    color: rgb(130, 0, 255);
+    color: rgb(0, 0, 0);
     margin-bottom: 10px;
   }
 }
 
 .second {
-  background-color: white;
+  background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: center;
