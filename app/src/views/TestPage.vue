@@ -1,9 +1,27 @@
 <template>
-  <div>hi</div>
+  <IonPage>
+    <IonContent>
+      <InfiPage></InfiPage>
+    </IonContent>
+  </IonPage>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+import { IonPage, IonContent } from "@ionic/vue";
 </script>
 
-<style></style>
+<style setup lang="scss">
+.container {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    background-color: deepskyblue;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+  }
+}
+</style>

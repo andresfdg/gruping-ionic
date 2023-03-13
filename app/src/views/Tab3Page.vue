@@ -5,8 +5,8 @@
         <ion-title>Tab 3</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <IonContent class="block1">
+    <ion-content>
+      <div class="block1">
         <div class="header">
           <span class="title">Gruping</span>
           <span>Cra 10# 28-71</span>
@@ -51,16 +51,28 @@
               <span> ver todos </span>
             </div>
           </div>
-
-          <div>
-            <div ref="el" class="box">
-              <div v-for="item in da" :key="item">
-                {{ item }}
-              </div>
-            </div>
+        </div>
+      </div>
+      <ion-list>
+        <div v-for="(item, index) in items" :key="index">
+          <div class="itenn">
+            <ion-avatar slot="start">
+              <img
+                :src="'https://picsum.photos/80/80?random=' + index"
+                alt="avatar"
+              />
+            </ion-avatar>
+            <ion-label>{{ item }}</ion-label>
           </div>
         </div>
-      </IonContent>
+      </ion-list>
+      <ion-infinite-scroll @ionInfinite="ionInfinite">
+        <ion-infinite-scroll-content
+          loading-text="Please wait..."
+          loading-spinner="bubbles"
+        >
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-content>
   </ion-page>
 </template>
@@ -84,23 +96,17 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  IonList,
+  IonItem,
+  IonAvatar,
+  IonLabel,
 } from "@ionic/vue";
 import { onMounted, reactive, ref } from "vue";
 import ModalCompo from "../components/ModalCompo.vue";
 import StoreCard from "../components/StoreCard.vue";
-import { useInfiniteScroll } from "@vueuse/core";
-
-const el = ref(null);
-const da = ref([1, 2, 3, 4, 5, 6]);
-
-useInfiniteScroll(
-  el,
-  () => {
-    // load more
-    da.value.push("2");
-  },
-  { distance: 10 }
-);
+import InfiPage from "@/components/InfiPage.vue";
 
 const data = reactive({
   stores: [],
@@ -114,6 +120,22 @@ const stores = async () => {
     .then((da) => (data.stores = da));
 };
 
+const items = reactive([]);
+
+const generateItems = () => {
+  const count = items.length + 1;
+  for (let i = 0; i < 50; i++) {
+    items.push(count + i);
+  }
+};
+
+const ionInfinite = (ev) => {
+  generateItems();
+  setTimeout(() => ev.target.complete(), 500);
+};
+
+generateItems();
+
 onMounted(() => {
   stores();
 });
@@ -124,6 +146,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   margin: 12px;
+  margin-top: 1px;
 }
 ion-searchbar {
   --background: snow;
@@ -134,7 +157,7 @@ ion-searchbar {
 }
 
 .block1 {
-  --background: #a5a6f6;
+  background-color: #a5a6f6;
 }
 .block2 {
   --background: red;
@@ -184,5 +207,15 @@ ion-searchbar {
   align-items: center;
   overflow: scroll;
   margin-top: 300px;
+}
+.boxi {
+  --background: red;
+  margin: 20px;
+}
+
+.itenn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
