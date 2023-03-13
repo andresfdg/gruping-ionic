@@ -91,8 +91,8 @@ const tab1 = () => {
   font-size: 200%;
   color: rgb(130, 0, 255);
   margin-bottom: 10px;
-
-  }
+}
+  
 }
 
 .second {
