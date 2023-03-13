@@ -104,8 +104,8 @@ import {
   IonLabel,
 } from "@ionic/vue";
 import { onMounted, reactive, ref } from "vue";
-import ModalCompo from "../components/ModalCompo.vue";
-import StoreCard from "../components/StoreCard.vue";
+import ModalCompo from "../../components/ModalCompo.vue";
+import StoreCard from "../../components/StoreCard.vue";
 import InfiPage from "@/components/InfiPage.vue";
 
 const data = reactive({
