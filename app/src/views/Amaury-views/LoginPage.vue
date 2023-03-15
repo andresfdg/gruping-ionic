@@ -11,18 +11,17 @@
           >
         </div>
         <div class="joint">
-
           <span class="h1">Ingresa a tu cuenta</span>
 
           <div class="second">
             <div class="blank1">
               <span style="font-size: 80%">Email</span>
             </div>
-            <input type="text" class="log">
+            <input type="text" class="log" />
             <div class="blank2">
               <span style="font-size: 80%">Contraseña</span>
             </div>
-            <input type="text" class="log">
+            <input type="text" class="log" />
           </div>
 
           <div class="cbutton" @click="tab1">
@@ -30,9 +29,10 @@
           </div>
 
           <div>
-            <p style="font-size: 10px;">¿Aún no tienes una cuenta? Registrate aquí</p>
+            <p style="font-size: 10px">
+              ¿Aún no tienes una cuenta? Registrate aquí
+            </p>
           </div>
-
         </div>
       </div>
     </ion-content>
@@ -53,8 +53,12 @@ const tab1 = () => {
 
 <style scoped lang="scss">
 .block1 {
-  --background: rgb(184,250,219);
-  --background: linear-gradient(0deg, rgba(184,250,219,1) 0%, rgba(222,216,252,1) 100%);
+  --background: rgb(184, 250, 219);
+  --background: linear-gradient(
+    0deg,
+    rgba(184, 250, 219, 1) 0%,
+    rgba(222, 216, 252, 1) 100%
+  );
 }
 
 .principal {
@@ -62,8 +66,6 @@ const tab1 = () => {
   flex-direction: column;
   align-content: center;
   align-items: center;
-  width: 100%;
-  height: 90%;
 }
 
 .mancha1 {
@@ -114,7 +116,7 @@ const tab1 = () => {
   height: 45%;
 }
 
-.log{
+.log {
   border: solid 1px;
   border-radius: 5px;
   padding: 10px;
@@ -122,7 +124,6 @@ const tab1 = () => {
   height: 100%;
   margin-bottom: 10px;
 }
-
 
 .blank1 {
   width: 100%;
