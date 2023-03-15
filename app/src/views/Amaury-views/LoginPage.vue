@@ -2,7 +2,7 @@
   <ion-page>
     <ion-content class="block1">
       <div class="principal">
-        <img src="../../../public/img/manchalog.png" class="mancha1" />
+        <img src="../../../public/img/Subject.png" class="mancha1" />
         <div class="jointd">
           <span class="h1">¡Bienvenido!</span>
           <span class="h2"
@@ -11,18 +11,28 @@
           >
         </div>
         <div class="joint">
-          <span class="h1">Elige tu tipo</span>
+
+          <span class="h1">Ingresa a tu cuenta</span>
+
           <div class="second">
             <div class="blank1">
-              <img src="../../../public/img/Startienda.jpg" class="ima" />
+              <span style="font-size: 80%">Email</span>
             </div>
+            <input type="text" class="log">
             <div class="blank2">
-              <img src="../../../public/img/Staruser.jpg" class="ima" />
+              <span style="font-size: 80%">Contraseña</span>
             </div>
+            <input type="text" class="log">
           </div>
+
           <div class="cbutton" @click="tab1">
             <button class="button">Continuar</button>
           </div>
+
+          <div>
+            <p style="font-size: 10px;">¿Aún no tienes una cuenta? Registrate aquí</p>
+          </div>
+
         </div>
       </div>
     </ion-content>
@@ -43,11 +53,11 @@ const tab1 = () => {
 
 <style scoped lang="scss">
 .block1 {
-  --background: rgb(0, 4, 255);
+  --background: rgb(184,250,219);
+  --background: linear-gradient(0deg, rgba(184,250,219,1) 0%, rgba(222,216,252,1) 100%);
 }
 
 .principal {
-  background-color: rgb(200, 201, 250);
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -57,8 +67,9 @@ const tab1 = () => {
 }
 
 .mancha1 {
+  margin-top: 5px;
   height: 40%;
-  width: 100%;
+  width: 90%;
 }
 
 .jointd {
@@ -83,46 +94,48 @@ const tab1 = () => {
   justify-content: start;
   text-align: center;
 
-  h1 {
+  .h1 {
     padding: 1px;
     margin-left: 1px;
     font-family: sans-serif;
     font-weight: 1000;
-    font-size: 200%;
-    color: rgb(0, 0, 0);
+    font-size: 150%;
+    color: rgb(78, 102, 78, 0.466);
     margin-bottom: 10px;
   }
 }
 
 .second {
-  background-color: black;
+  background-color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 45%;
 }
 
-.blank1 {
+.log{
   border: solid 1px;
-  margin-right: 10px;
-  border-radius: 15px;
-  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: white;
-  width: 50%;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
   height: 100%;
+  margin-bottom: 10px;
+}
+
+
+.blank1 {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: start;
 }
 
 .blank2 {
-  border: solid 1px;
-  border-radius: 15px;
-  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  margin-left: 10px;
-  background-color: white;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: start;
 }
 
 .ima {
