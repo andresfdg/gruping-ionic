@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Amaury-views/LoginPage.vue"),
   },
   {
-    path: "/singin",
+    path: "/singin/:typeuser",
     name: "SingIn",
     component: () => import("@/views/Amaury-views/SingInPage.vue"),
   },

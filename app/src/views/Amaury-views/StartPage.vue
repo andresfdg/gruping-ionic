@@ -79,25 +79,21 @@ const TypeUser = () => {
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-.cbutton:hover {
+
+.cbutton:active {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-.cbutton:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
 }
 
 .button {
   font-size: 100%;
-  color: rgb(96, 124, 96);
+  font-weight: 550;
+  color: rgb(94, 94, 94);
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
 }
 
 .button:active {
-  background-color: #3e8e41;
-  transform: translateY(4px);
+  transform: translateY(-2px);
 }
 </style>

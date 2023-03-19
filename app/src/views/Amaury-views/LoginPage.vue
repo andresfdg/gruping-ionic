@@ -17,17 +17,17 @@
             <div class="blank1">
               <span style="font-size: 80%">Email</span>
             </div>
-            <input type="text" class="log" />
+            <input type="text" class="log" placeholder="email" v-model="data.email"/>
             <div class="blank2">
-              <span style="font-size: 80%">Contraseña</span>
+              <span style="font-size: 80%" >Contraseña</span>
             </div>
-            <input type="text" class="log" />
+            <input type="text" class="log" placeholder="email" v-model="data.password"/>
           </div>
+          <span v-if="data.alert" style="color: rgb(130, 0, 255);">Email/Password Fail</span>
 
-          <div class="cbutton" @click="next">
+          <div class="cbutton" @click="login">
             <button class="button">Continuar</button>
           </div>
-
           <div>
             <p style="font-size: 10px">
               ¿Aún no tienes una cuenta? <strong @click="singin">Registrate aquí</strong>
@@ -41,17 +41,59 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
+import { onMounted, reactive } from "@vue/runtime-core";
+/* import  {useStore}  from "../../stores/store"; */
 
 const router = useRouter();
+const route = useRoute();
+/* const store = useStore(); */
 
-const next = () => {
-  router.push("/tabs/tab1");
-};
+const data = reactive({
+  alert: false,
+  email: "",
+  password: "",
+  type: route.params.typeuser,
+});
 
 const singin = () =>{
-  router.push("/singin");
+  router.push(`/singin/${route.params.typeuser.toString()}`);
 }
+
+const login = async () => {
+  if (data.email == "" || data.password==""){
+    data.alert = true;
+  }
+  else {
+    const res = await fetch (`http://127.0.0.1:8000/login`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    });
+
+    const da = await res.json();
+
+    if (da.detail == "Not Found") {
+      data.alert = true;
+    } else {
+     console.log(da);
+     localStorage.setItem("token", da);
+
+     let jwt = da;
+
+      let tokens = jwt.split(".");
+      let to = JSON.parse(atob(tokens[1]));
+      localStorage.setItem("type", to.type);
+     /* store.auth = to.type; */
+     data.alert = false;
+     if (data.type == "Person") {
+        router.push("/tabs/tab1");
+       } else {
+        router.push("/homestore");
+        }
+    };
+  }
+};
 
 </script>
 
@@ -106,7 +148,7 @@ const singin = () =>{
     font-family: sans-serif;
     font-weight: 1000;
     font-size: 150%;
-    color: rgb(78, 102, 78, 0.466);
+    color: rgb(94, 94, 94);
     margin-bottom: 10px;
   }
 }
@@ -168,10 +210,11 @@ const singin = () =>{
   color: rgb(130, 0, 255);
 }
 
+
 .cbutton {
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: 30px;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: 10px;
   margin-bottom: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -180,21 +223,21 @@ const singin = () =>{
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-.cbutton:hover {
+
+.cbutton:active {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
 }
 
 .button {
   font-size: 100%;
-  color: rgb(96, 124, 96);
-  font-weight: 800;
+  font-weight: 550;
+  color: rgb(94, 94, 94);
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
+}
+
+.button:active {
+  transform: translateY(-2px);
 }
 </style>

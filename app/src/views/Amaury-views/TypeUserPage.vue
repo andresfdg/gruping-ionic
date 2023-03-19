@@ -1,22 +1,22 @@
 <template>
-  <ion-page>
+  <ion-page >
     <ion-content class="block1">
       <div class="principal">
         <img src="../../../public/img/manchatype.jpg" class="mancha1" />
         <div class="joint">
           <span class="h1">Elige tu tipo</span>
           <div class="second">
-            <div class= "blank1" id="1" @click="typestore">
+            <div :class="data.store ? 'sel' : 'blank1'" id="1" @click="typestore">
               <img src="../../../public/img/Startienda.jpg" class="ima" />
             </div>
-            <div class="blank2" @click="typeperson">
+            <div :class="data.person ? 'sel2' : 'blank2'" @click="typeperson">
               <img src="../../../public/img/Staruser.jpg" class="ima" />
             </div>
           </div>
           <div class="cbutton" @click="tab1">
             <button class="button">Continuar</button>
-            <p v-if = data.select >Selecciona antes de Continuar</p>
           </div>
+          <p v-if = data.select style="font-size: 10px;">Selecciona el tipo de usuario por favor</p>
         </div>
       </div>
     </ion-content>
@@ -40,21 +40,25 @@ const router = useRouter();
 
 const tab1 = () => {
   if (data.typeuser!=""){
-    router.push(`login/${data.typeuser}`);
+    router.push(`/login/${data.typeuser}`);
   } 
   else{
     data.select = true;
   }
 };
 
-const typeperson = () => {
-  data.typeuser = "Person";
-  data.select = false;
-};
-
 const typestore = () => {
   data.typeuser = "Store";
   data.select = false;
+  data.store = true;
+  data.person = false;
+};
+
+const typeperson = () => {
+  data.typeuser = "Person";
+  data.select = false;
+  data.person = true;
+  data.store = false;
 };
 
 </script>
@@ -102,7 +106,6 @@ const typestore = () => {
 }
 
 .blank1 {
-  border: solid 1px;
   margin-right: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
@@ -113,11 +116,33 @@ const typestore = () => {
 }
 
 .blank2 {
-  border: solid 1px;
+  margin-left: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  background-color: white;
+  width: 50%;
+  height: 100%;
+}
+
+.sel{
+  border: solid 1px rgb(0, 255, 251);
+  margin-right: 10px;
+  border-radius: 15px;
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  background-color: white;
+  width: 50%;
+  height: 100%;
+
+}
+
+.sel2{
+  border: solid 1px rgb(0, 255, 251);
   margin-left: 10px;
+  border-radius: 15px;
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   background-color: white;
   width: 50%;
   height: 100%;
@@ -135,7 +160,7 @@ const typestore = () => {
   font-family: sans-serif;
   font-weight: 1000;
   font-size: 200%;
-  color: rgba(78, 102, 78, 0.466);
+  color: rgba(94, 94, 94);
   margin-bottom: 10px;
 }
 
@@ -149,9 +174,9 @@ const typestore = () => {
 }
 
 .cbutton {
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: 30px;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: 10px;
   margin-bottom: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -160,21 +185,21 @@ const typestore = () => {
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-.cbutton:hover {
+
+.cbutton:active {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
 }
 
 .button {
   font-size: 100%;
-  color: rgb(96, 124, 96);
-  font-weight: 800;
+  font-weight: 550;
+  color: rgb(94, 94, 94);
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
+}
+
+.button:active {
+  transform: translateY(-2px);
 }
 </style>

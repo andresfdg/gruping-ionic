@@ -121,7 +121,7 @@ const login = () =>{
       font-family: sans-serif;
       font-weight: 1000;
       font-size: 150%;
-      color: rgb(78, 102, 78, 0.466);
+      color: rgb(94, 94, 94);
       margin-bottom: 10px;
     }
 }
@@ -219,7 +219,7 @@ ion-toggle{
   
 .button {
     font-size: 100%;
-    color: rgb(96, 124, 96);
+    color: rgb(94, 94, 94);
     font-weight: 800;
     background-color: rgb(106, 255, 175);
     border-radius: 10px;
