@@ -24,13 +24,13 @@
             <input type="text" class="log" />
           </div>
 
-          <div class="cbutton" @click="tab1">
+          <div class="cbutton" @click="next">
             <button class="button">Continuar</button>
           </div>
 
           <div>
             <p style="font-size: 10px">
-              ¿Aún no tienes una cuenta? Registrate aquí
+              ¿Aún no tienes una cuenta? <strong @click="singin">Registrate aquí</strong>
             </p>
           </div>
         </div>
@@ -41,14 +41,18 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
-
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const tab1 = () => {
+const next = () => {
   router.push("/tabs/tab1");
 };
+
+const singin = () =>{
+  router.push("/singin");
+}
+
 </script>
 
 <style scoped lang="scss">

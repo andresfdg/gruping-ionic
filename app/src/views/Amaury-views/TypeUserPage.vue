@@ -6,15 +6,16 @@
         <div class="joint">
           <span class="h1">Elige tu tipo</span>
           <div class="second">
-            <div class="blank1">
+            <div class= "blank1" id="1" @click="typestore">
               <img src="../../../public/img/Startienda.jpg" class="ima" />
             </div>
-            <div class="blank2">
+            <div class="blank2" @click="typeperson">
               <img src="../../../public/img/Staruser.jpg" class="ima" />
             </div>
           </div>
           <div class="cbutton" @click="tab1">
             <button class="button">Continuar</button>
+            <p v-if = data.select >Selecciona antes de Continuar</p>
           </div>
         </div>
       </div>
@@ -24,14 +25,38 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
-
+import { reactive } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+
+
+const data = reactive ({
+  typeuser: "",
+  select: false,
+  person: false,
+  store: false
+});
 
 const router = useRouter();
 
 const tab1 = () => {
-  router.push("/tabs/tab1");
+  if (data.typeuser!=""){
+    router.push(`login/${data.typeuser}`);
+  } 
+  else{
+    data.select = true;
+  }
 };
+
+const typeperson = () => {
+  data.typeuser = "Person";
+  data.select = false;
+};
+
+const typestore = () => {
+  data.typeuser = "Store";
+  data.select = false;
+};
+
 </script>
 
 <style scoped lang="scss">

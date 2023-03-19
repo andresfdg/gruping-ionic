@@ -26,6 +26,7 @@ const router = useRouter();
 const TypeUser = () => {
   router.push("/typeuserpage");
 };
+
 </script>
 
 <style scoped lang="scss">
