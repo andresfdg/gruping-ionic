@@ -17,20 +17,33 @@
             <div class="blank1">
               <span style="font-size: 80%">Email</span>
             </div>
-            <input type="text" class="log" placeholder="email" v-model="data.email"/>
+            <input
+              type="text"
+              class="log"
+              placeholder="email"
+              v-model="data.email"
+            />
             <div class="blank2">
-              <span style="font-size: 80%" >Contraseña</span>
+              <span style="font-size: 80%">Contraseña</span>
             </div>
-            <input type="text" class="log" placeholder="email" v-model="data.password"/>
+            <input
+              type="text"
+              class="log"
+              placeholder="email"
+              v-model="data.password"
+            />
           </div>
-          <span v-if="data.alert" style="color: rgb(130, 0, 255);">Email/Password Fail</span>
+          <span v-if="data.alert" style="color: rgb(130, 0, 255)"
+            >Email/Password Fail</span
+          >
 
           <div class="cbutton" @click="login">
             <button class="button">Continuar</button>
           </div>
           <div>
             <p style="font-size: 10px">
-              ¿Aún no tienes una cuenta? <strong @click="singin">Registrate aquí</strong>
+              ¿Aún no tienes una cuenta?
+              <strong @click="singin">Registrate aquí</strong>
             </p>
           </div>
         </div>
@@ -43,11 +56,11 @@
 import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, reactive } from "@vue/runtime-core";
-/* import  {useStore}  from "../../stores/store"; */
+import { useStore } from "../../stores/store";
 
 const router = useRouter();
 const route = useRoute();
-/* const store = useStore(); */
+const store = useStore();
 
 const data = reactive({
   alert: false,
@@ -56,16 +69,15 @@ const data = reactive({
   type: route.params.typeuser,
 });
 
-const singin = () =>{
+const singin = () => {
   router.push(`/singin/${route.params.typeuser.toString()}`);
-}
+};
 
 const login = async () => {
-  if (data.email == "" || data.password==""){
+  if (data.email == "" || data.password == "") {
     data.alert = true;
-  }
-  else {
-    const res = await fetch (`http://127.0.0.1:8000/login`, {
+  } else {
+    const res = await fetch(`http://127.0.0.1:8000/login`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -76,25 +88,22 @@ const login = async () => {
     if (da.detail == "Not Found") {
       data.alert = true;
     } else {
-     console.log(da);
-     localStorage.setItem("token", da);
+      console.log(da);
+      localStorage.setItem("token", da);
 
-     let jwt = da;
+      let jwt = da;
 
       let tokens = jwt.split(".");
       let to = JSON.parse(atob(tokens[1]));
       localStorage.setItem("type", to.type);
-     /* store.auth = to.type; */
-     data.alert = false;
-     if (data.type == "Person") {
+      store.auth = to.type;
+      data.alert = false;
+      if (data.type == "Person") {
         router.push("/tabs/tab1");
-       } else {
-        router.push("/homestore");
-        }
-    };
+      }
+    }
   }
 };
-
 </script>
 
 <style scoped lang="scss">
@@ -209,7 +218,6 @@ const login = async () => {
   font-size: 110%;
   color: rgb(130, 0, 255);
 }
-
 
 .cbutton {
   margin-right: 40px;
