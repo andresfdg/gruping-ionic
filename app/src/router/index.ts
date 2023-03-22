@@ -52,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/singin/:typeuser",
     name: "SingIn",
-    component: () => import("@/views/Amaury-views/SingInPage.vue"),
+    component: () => import("@/views/Amaury-views/SingInUserPage.vue"),
   },
   {
     path: "/about",

@@ -4,10 +4,7 @@
         <div class="principal">
           <div class="jointd">
             <span class="h1">¡Bienvenido!</span>
-            <span class="h2"
-              >Crea tu cuenta y disfruta de las promociones disponibles para
-              tí</span
-            >
+            <span class="h2">Crea tu cuenta</span>
           </div>
           <div class="joint">
             <span class="h1">Registra tu cuenta</span>
@@ -15,35 +12,40 @@
             <div class="second">
 
               <div class="blank1">
-                <span style="font-size: 80%">Nombres</span>
+                <span style="font-size: 80%" >Nombres</span>
               </div>
-              <input type="text" class="log" />
-
-              <div class="blank1">
-                <span style="font-size: 80%">Apellidos</span>
-              </div>
-              <input type="text" class="log" />
+              <input type="text" class="log" v-model="data.name" placeholder="nombres completos" />
 
               <div class="blank1">
                 <span style="font-size: 80%">Email</span>
               </div>
-              <input type="text" class="log" />
+              <input type="text" class="log" v-model="data.email" placeholder="email"/>
 
               <div class="blank1">
                 <span style="font-size: 80%">Contraseña</span>
               </div>
-              <input type="text" class="log" />
+              <input type="text" class="log" v-model="data.password" placeholder="contraseña"/>
 
               <div class="blank1">
-                <span style="font-size: 80%">Confirmar contraseña</span>
+                <span style="font-size: 80%">Validar contraseña</span>
               </div>
-              <input type="text" class="log" />
+              <input type="text" class="log" placeholder="contraseña"/>
+
+              <div class="blank1">
+                <span style="font-size: 80%" >Celular</span>
+              </div>
+              <input type="text" class="log" v-model="data.phone" placeholder="celular"/>
+
+              <div class="blank1">
+                <span style="font-size: 80%">Cumpleaños</span>
+              </div>
+              <input type="text" class="log" placeholder="mm/dd/yy" v-model="data.birthdate"/>
             </div>
             <ion-item>
                 <ion-label style="font-size: 13px" >Aceptar terminos de uso</ion-label>
                 <ion-toggle slot="end"></ion-toggle>
             </ion-item>
-            <div class="cbutton" @click="next">
+            <div class="cbutton" @click="signupuser">
               <button class="button">Continuar</button>
             </div>
   
@@ -60,18 +62,42 @@
   
 <script setup lang="ts">
 import { labeledStatement } from '@babel/types';
+import { reactive } from "@vue/reactivity";
 import { IonPage, IonContent, IonToggle, IonLabel, IonItem } from "@ionic/vue";
 import { useRouter } from "vue-router";
   
 const router = useRouter();
   
-const next = () => {
-    console.log("Working")
-};
-  
 const login = () =>{
     router.push("/login/Person");
 }
+
+const next = () => {
+    console.log("Working")
+};
+
+const data = reactive({
+  name: "",
+  email: "",
+  password: "",
+  phone: "",
+  birthdate: "",
+  city: "",
+  adress: "",
+});
+
+const signupuser = async () => {
+  const res = await fetch(`http://127.0.0.1:8000/user/create`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  });
+  const resp = await res.json()
+  console.log(resp.name)
+  /* setTimeout(() => {
+    router.push("/login/Person");
+  }, 3000); */
+};
 
 </script>
   
@@ -196,32 +222,32 @@ ion-toggle{
 }
   
 .cbutton {
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 30px;
-    margin-bottom: 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: rgb(106, 255, 175);
-    border-radius: 10px;
-    box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
-      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(106, 255, 175);
+  border-radius: 10px;
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-.cbutton:hover {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-      0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  }
-.button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+
+.cbutton:active {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-  
+
 .button {
-    font-size: 100%;
-    color: rgb(94, 94, 94);
-    font-weight: 800;
-    background-color: rgb(106, 255, 175);
-    border-radius: 10px;
+  font-size: 100%;
+  font-weight: 550;
+  color: rgb(94, 94, 94);
+  background-color: rgb(106, 255, 175);
+  border-radius: 10px;
+}
+
+.button:active {
+  transform: translateY(-2px);
 }
 </style>
