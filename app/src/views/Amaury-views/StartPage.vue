@@ -1,31 +1,51 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-      <img src="../../../public/img/manchota.jpg" class="mancha1" />
-      <div class="joint">
-        <span class="h1">¡Bienvenido!</span>
-        <span class="h2"
-          >Crea tu cuenta y disfruta de las promociones disponibles para
-          tí</span
-        >
-        <div class="cbutton" @click="TypeUser">
-          <button class="button">Empecemos</button>
+      <Transition name="bounce">
+        <img src="../../../public/img/manchota.jpg" class="mancha1" v-if="data.open"/>
+      </Transition>
+        <div class="joint">
+          <Transition name="bounce">
+          <span class="h1">¡Bienvenido!</span>
+          </Transition>
+          <span class="h2">Crea tu cuenta y disfruta de las promociones disponibles paratí</span>
+          <div class="cbutton" @click="TypeUser">
+            <button class="button">Empecemos</button>
+          </div>
         </div>
-      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
-
+import { reactive } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 
+import { on } from "dom7";
+
+const data = reactive({
+  open: false,
+});
+
 const router = useRouter();
+
+const toggleSidebar = () => {
+  if (data.open == true){
+    data.open = false;
+  } else {
+    data.open = true;
+  }
+}
 
 const TypeUser = () => {
   router.push("/typeuserpage");
 };
+
+onMounted(()=>{
+  toggleSidebar();
+})
 
 </script>
 
@@ -95,5 +115,23 @@ const TypeUser = () => {
 
 .button:active {
   transform: translateY(-2px);
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.9s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.9s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

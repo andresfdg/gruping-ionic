@@ -2,7 +2,9 @@
   <ion-page >
     <ion-content class="block1">
       <div class="principal">
-        <img src="../../../public/img/manchatype.jpg" class="mancha1" />
+        <Transition name="bounce">
+        <img src="../../../public/img/manchatype.jpg" class="mancha1" v-if="data.open" />
+        </Transition>
         <div class="joint">
           <span class="h1">Elige tu tipo</span>
           <div class="second">
@@ -26,6 +28,7 @@
 <script setup lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
 import { reactive } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 
 
@@ -33,7 +36,8 @@ const data = reactive ({
   typeuser: "",
   select: false,
   person: false,
-  store: false
+  store: false, 
+  open:false
 });
 
 const router = useRouter();
@@ -60,6 +64,19 @@ const typeperson = () => {
   data.person = true;
   data.store = false;
 };
+
+const toggleSidebar = () => {
+  if (data.open == true){
+    data.open = false;
+  } else {
+    data.open = true;
+  }
+}
+
+onMounted(()=>{
+  toggleSidebar();
+})
+
 
 </script>
 
@@ -201,5 +218,23 @@ const typeperson = () => {
 
 .button:active {
   transform: translateY(-2px);
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.9s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.9s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
