@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
 import TabsPage from "../views/TabsPage.vue";
+import TabsStorePage from "../views/Amaury-views/TabsStorePage.vue";
 import AboutPage from "../views/AboutPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -14,15 +15,24 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "",
-        redirect: "/tabs/tab1",
+        redirect: "/tabs/home",
       },
       {
-        path: "tab1",
-        component: () => import("@/views/Andres-views/Tab1Page.vue"),
+        path: "home",
+        component: () => import("@/views/Amaury-views/HomePage.vue"),
       },
       {
         path: "userorders",
         component: () => import("@/views/Amaury-views/UserOrders.vue"),
+      },
+      {
+        path: "store/:id",
+        component: () => import("@/views/Amaury-views/StorePage.vue"),
+      },
+      {
+        path: "/guielditem/:it/:id/:name/:price/:open",
+        component: () => import("@/views/Amaury-views/GuildsOfItem.vue"),
+        
       },
       {
         path: "tab3",
@@ -31,6 +41,31 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "tab4",
         component: () => import("@/views/Andres-views/Tab4Page.vue"),
+      },
+    ],
+  },{
+    path: "/tabs/store",
+    component: TabsStorePage,
+    children: [
+      {
+        path: "",
+        redirect: "/tabs/store/home",
+      },
+      {
+        path: "home",
+        component: () => import("@/views/Amaury-views/HomeStorePage.vue"),
+      },
+      {
+        path: "home2",
+        component: () => import("@/views/Amaury-views/HomeStorePage.vue"),
+      },
+      {
+        path: "home3",
+        component: () => import("@/views/Amaury-views/HomeStorePage.vue"),
+      },
+      {
+        path: "home4",
+        component: () => import("@/views/Amaury-views/HomeStorePage.vue"),
       },
     ],
   },

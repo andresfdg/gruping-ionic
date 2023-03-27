@@ -4,19 +4,19 @@
       <ion-tabs>
         <ion-router-outlet></ion-router-outlet>
         <ion-tab-bar slot="bottom">
-          <ion-tab-button tab="tab1" href="/tabs/home">
-            <img src="../../public/img/HomeIcon.png" alt="" class="tadicon" />
+          <ion-tab-button tab="tab1" href="/tabs/store/home">
+            <img src="../../../public/img/HomeIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
 
-          <ion-tab-button tab="tab2" href="/tabs/userorders">
-            <img src="../../public/img/CarIcon.png" alt="" class="tadicon" />
+          <ion-tab-button tab="tab2" href="/tabs/store/home">
+            <img src="../../../public/img/CarIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
-          <ion-tab-button tab="tab3" href="/tabs/tab3">
-            <img src="../../public/img/GroupIcon.png" alt="" class="tadicon" />
+          <ion-tab-button tab="tab3" href="/tabs/store/home">
+            <img src="../../../public/img/GroupIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
 
-          <ion-tab-button tab="tab4" href="/tabs/tab4">
-            <img src="../../public/img/SettingIcon.png" alt="" class="tadicon" />
+          <ion-tab-button tab="tab4" href="/tabs/store/home">
+            <img src="../../../public/img/SettingIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
         </ion-tab-bar>
       </ion-tabs>

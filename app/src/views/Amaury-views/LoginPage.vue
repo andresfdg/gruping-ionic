@@ -99,7 +99,9 @@ const login = async () => {
       store.auth = to.type;
       data.alert = false;
       if (data.type == "Person") {
-        router.push("/tabs/tab1");
+        router.push("/tabs/home");
+      } else{
+        router.push("/tabs/store/home");
       }
     }
   }
