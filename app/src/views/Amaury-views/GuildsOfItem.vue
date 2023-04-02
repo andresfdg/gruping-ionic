@@ -1,142 +1,131 @@
 <template>
-    <ion-page>
-      <ion-header>
-          <ion-toolbar>
-              <ion-title>Grupping Logo</ion-title>
-          </ion-toolbar>
-          </ion-header>
-      <ion-content>
-        <div class="guield">
-    <div class="container">
-      <div>.</div>
-      <h1 class="titleguield">Item Guilds</h1>
-      <div class="d-flex">
-        <div v-for="i in data.types" :key="i">
-          <button class="btguild" @click="() => filter(i)">
-            <span v-if="i == 'True'">Active</span>
-            <span v-if="i == 'In process'">In process</span>
-            <span v-if="i == 'send'">send</span>
-            <span v-if="i == 'finished'">finished</span>
-            <span v-if="i == 'all'">all</span>
-          </button>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Grupping Logo</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  <ion-content>
+    <div class="guield">
+      <div class="container">
+        <!--Imagen principal-->
+        <div class="product_header">
+          <span class="titleguield" style="margin-left: 25px;">{{ router.params.name }}</span>
+          <span style="margin-left: 30px;"> {{router.params.open ? 'Open':'Close'}}</span>
+          <img class="product_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPczWtSZ9ZwJtVbOGGdScNG6JFZd6vI2K5IXoIKCaB4RaYaUYIBefQ8N1VgE5Mil2fh4w&usqp=CAU"/>
         </div>
-      </div>
-
-      <div class="mt-5"></div>
-      <div class="alin">
-        <div class="arrow">
-          <router-link class="mt-3" :to="`/homestore/${router.params.id}`"
-            ><i class="bx bx-arrow-back"></i
-          ></router-link>
-          <div>
-            <button
-              class="btguildt"
-              v-if="data.open"
-              @click="() => activeformguild()"
-            >
-              Create new Guild
+        <!--Filtros-->
+        <div class="d-flex">
+          <div v-for="i in data.types" :key="i">
+            <button class="btguild" @click="() => filter(i)">
+              <span v-if="i == 'True'">Act</span>
+              <span v-if="i == 'In process'">pro</span>
+              <span v-if="i == 'send'">send</span>
+              <span v-if="i == 'finished'">fini</span>
+              <span v-if="i == 'all'">all</span>
             </button>
           </div>
         </div>
-      </div>
-
-      <div class="fit">
-        <form @submit.prevent="craete_order" class="formitem" v-if="data.form">
-          <span class="titlespan">How many items do you want?</span>
-          <input type="number" placeholder="quantity" v-model="data.quantity" />
-          <button class="b"><i class="bx bx-cart-add"></i></button>
-          <div>
-            <span class="spa">cost:</span>
-            {{ router.params.price * data.quantity }}
+        <!-- Boton de formulario para crear nuevo gremio-->
+        <div class="alin">
+          <div class="arrow">
+            <div>
+              <button class="btguildt" v-if="data.open" @click="() => activeformguild()" >
+                create new guild
+              </button>
+              <CreateGuildForm></CreateGuildForm>
+            </div>
           </div>
-          <div>
-            <span class="spa">discount: </span>
-            {{ data.discount }}%
-          </div>
-          <div>
-            <span class="spa">total: </span>
-            {{
-              router.params.price * data.quantity -
-              router.params.price * data.quantity * (data.discount / 100)
-            }}
-          </div>
-        </form>
-        <div class="cho-container"></div>
-      </div>
+        </div>
+        <!-- Boton de formulario para ingresar a un gremio existente -->
+        <div class="fit">
+          <form @submit.prevent="craete_order" class="formitem" v-if="data.form">
+            <span class="titlespan">How many items do you want?</span>
+            <input type="number" placeholder="quantity" v-model="data.quantity" />
+            <button class="b"><i class="bx bx-cart-add"></i></button>
+            <div>
+              <span class="spa">cost:</span>
+              {{ router.params.price * data.quantity }}
+            </div>
+            <div>
+              <span class="spa">discount: </span>
+              {{ data.discount }}%
+            </div>
+            <div>
+              <span class="spa">total: </span>
+              {{
+                router.params.price * data.quantity -
+                router.params.price * data.quantity * (data.discount / 100)
+              }}
+            </div>
+          </form>
+          <div class="cho-container"></div>
+        </div>
 
-      <div class="fit">
-        <form
-          @submit.prevent="craete_guild"
-          class="formitem"
-          v-if="data.formguild"
-        >
-          <select v-model="data.quantity_max">
-            <option :value="data.quantity_low">{{ data.quantity_low }}</option>
-            <option :value="data.quantity_medium">
-              {{ data.quantity_medium }}
-            </option>
-            <option :value="data.quantity_high">
-              {{ data.quantity_high }}
-            </option>
-          </select>
-
-          <input type="number" placeholder="quantity" v-model="data.quantity" />
-          <input
-            type="number"
-            placeholder="duration in days"
-            v-model="data.life_time"
-          />
-          <button class="btguild">create!</button>
-          {{ data.quantity_max }}
-        </form>
-      </div>
-
-      <div class="row">
-        <div
-          class="col"
-          v-for="i in data.guields"
-          :key="i"
-          @click="() => activeform(i)"
-        >
-          <div
-            class="guildca card col-3 m-5 justify-content-center"
-            v-if="i.active == data.filtertype || data.filtertype == 'all'"
+        <div class="fit">
+          <form
+            @submit.prevent="craete_guild"
+            class="formitem"
+            v-if="data.formguild"
           >
-            <div class="d-flex">
-              <div>
-                <div class="solid">
-                  <span class="solidt">Id: </span> {{ i.id }}
-                </div>
-                <div>Name: {{ router.params.name }}</div>
-                <div class="solid">
-                  <span class="solidt">Actual_quantity: </span>
-                  {{ i.actual_quantity }}
-                </div>
-                <div>Discount: {{ i.discount }}</div>
-                <div>Quantity_max: {{ i.quantity_max }}</div>
-                <div>State: {{ i.active }}</div>
-                <div>Counter: {{ i.active }}</div>
-              </div>
+            <select v-model="data.quantity_max">
+              <option :value="data.quantity_low">{{ data.quantity_low }}</option>
+              <option :value="data.quantity_medium">
+                {{ data.quantity_medium }}
+              </option>
+              <option :value="data.quantity_high">
+                {{ data.quantity_high }}
+              </option>
+            </select>
 
-              <img
-                class="mt-3"
-                src="../../../public/img/guild.png"
-                alt=""
-                width="60"
-                height="80"
-              />
+            <input type="number" placeholder="quantity" v-model="data.quantity" />
+            <input
+              type="number"
+              placeholder="duration in days"
+              v-model="data.life_time"
+            />
+            <button class="btguild">create!</button>
+            {{ data.quantity_max }}
+          </form>
+        </div>
+
+        <div class="row">
+          <div
+            class="col"
+            v-for="i in data.guields"
+            :key="i"
+            @click="() => activeform(i)"
+          >
+            <div
+              class="guildca card col-3 m-5 justify-content-center"
+              v-if="i.active == data.filtertype || data.filtertype == 'all'"
+            >
+              <div class="d-flex">
+                <div>
+                  <div class="solid">
+                    <span class="solidt">Id: </span> {{ i.id }}
+                  </div>
+                  <div>Name: {{ router.params.name }}</div>
+                  <div class="solid">
+                    <span class="solidt">Actual_quantity: </span>
+                    {{ i.actual_quantity }}
+                  </div>
+                  <div>Discount: {{ i.discount }}</div>
+                  <div>Quantity_max: {{ i.quantity_max }}</div>
+                  <div>State: {{ i.active }}</div>
+                  <div>Counter: {{ i.active }}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {{ data.id_guield }}
     </div>
-  </div>
-      </ion-content>
-    </ion-page>
-  </template>
+  </ion-content>
+</ion-page>
+</template>
     
-  <script setup lang="ts">
+  <script setup lang="ts" >
   import { Swiper, SwiperSlide } from "swiper/vue";
   import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
   import "swiper/css";
@@ -153,6 +142,7 @@
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   } from "@ionic/vue";
+import CreateGuildForm from "../../components/CreateGuildForm.vue";
 import { onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -181,6 +171,7 @@ const data = reactive({
 const router = useRoute();
 //TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
+
 
 //const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
   //locale: "es-CO",
@@ -313,16 +304,29 @@ onMounted(() => {
 </script>
 
 <style>
+
 .guield {
-  background-color: rgb(222, 245, 237);
+  background-color: rgb(255, 255, 255);
 }
 .guildca {
   padding: 10px;
   width: 280px;
-
   color: black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.product_header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 25px;
+}
+
+.product_img{
+  border-radius: 20px;
+  width: 100%;
 }
 
 .formitem {
@@ -433,5 +437,12 @@ onMounted(() => {
   font-size: large;
   font-weight: bold;
   color: black;
+}
+
+.d-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }
 </style>
