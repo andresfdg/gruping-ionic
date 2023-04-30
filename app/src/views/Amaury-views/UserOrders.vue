@@ -124,6 +124,10 @@ onMounted(() => {
 
 <style scoped="true">
 
+ion-content{
+  --background: rgb(242,242,242);
+}
+
 .principal{
   margin: 20px;
 }

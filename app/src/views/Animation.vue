@@ -4,6 +4,6 @@
   </IonPage>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 </script>

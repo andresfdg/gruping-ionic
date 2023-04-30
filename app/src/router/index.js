@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
-import { RouteRecordRaw } from "vue-router";
 import TabsPage from "../views/TabsPage.vue";
 import TabsStorePage from "../views/Amaury-views/TabsStorePage.vue";
 import AboutPage from "../views/AboutPage.vue";
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
   {
     path: "/",
     redirect: "/engine",
@@ -32,11 +31,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/guielditem/:it/:id/:name/:price/:open",
         component: () => import("@/views/Amaury-views/GuildsOfItem.vue"),
-        
       },
       {
-        path: "tab3",
-        component: () => import("@/views/Andres-views/Tab3Page.vue"),
+        path: "guildsofuser",
+        component: () => import("@/views/Amaury-views/GuildsOfUser.vue"),
       },
       {
         path: "tab4",

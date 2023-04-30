@@ -10,45 +10,34 @@
             <span class="h1">Registra tu cuenta</span>
   
             <div class="second">
-
-              <div class="blank1">
-                <span style="font-size: 80%" >Nombres</span>
-              </div>
               <input type="text" class="log" v-model="data.name" placeholder="nombres completos" />
-
-              <div class="blank1">
-                <span style="font-size: 80%">Email</span>
-              </div>
               <input type="text" class="log" v-model="data.email" placeholder="email"/>
-
-              <div class="blank1">
-                <span style="font-size: 80%">Contraseña</span>
-              </div>
-              <input type="text" class="log" v-model="data.password" placeholder="contraseña"/>
-
-              <div class="blank1">
-                <span style="font-size: 80%">Validar contraseña</span>
-              </div>
-              <input type="text" class="log" placeholder="contraseña"/>
-
-              <div class="blank1">
-                <span style="font-size: 80%" >Celular</span>
-              </div>
+              <input type="password" class="log" v-model="data.password" placeholder="contraseña"/>
+              <input type="password" class="log" v-model="data.password2" placeholder="confirma contraseña"/>
               <input type="text" class="log" v-model="data.phone" placeholder="celular"/>
+              <input type="date" class="logf" placeholder="mm/dd/yy" v-model="data.birthdate"/>
 
-              <div class="blank1">
-                <span style="font-size: 80%">Cumpleaños</span>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-columns: 1fr 1fr;">
+              <input style="width: 99%; margin: 1%; height: 95%;" type="text" class="log" placeholder="pais" v-model="data.country"/>
+              <input style="width: 99%; margin: 1%; height: 95%;" type="text" class="log" placeholder="departamento" v-model="data.state"/>
+              <input style="width: 99%; margin: 1%; height: 95%;" type="text" class="log" placeholder="ciuidad" v-model="data.city"/>
+              <input style="width: 99%; margin: 1%; height: 95%;" type="text" class="log" placeholder="direccion: Carrera xxx # xxx-xxx" v-model="data.adress"/>
               </div>
-              <input type="text" class="log" placeholder="mm/dd/yy" v-model="data.birthdate"/>
+
             </div>
+            <br>
+            
             <ion-item>
                 <ion-label style="font-size: 13px" >Aceptar terminos de uso</ion-label>
                 <ion-toggle slot="end"></ion-toggle>
             </ion-item>
+            <span v-if="data.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
+            <span v-if="data.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
+            <span v-if="data.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
+            <span v-if="data.exito" style="color: blueviolet;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
             <div class="cbutton" @click="signupuser">
               <button class="button">Continuar</button>
             </div>
-  
             <div>
               <p style="font-size: 10px">
                 ¿Ya tienes una cuenta? <strong @click="login">Ingresa aquí</strong>
@@ -60,7 +49,7 @@
     </ion-page>
   </template>
   
-<script setup lang="ts">
+<script setup>
 import { labeledStatement } from '@babel/types';
 import { reactive } from "@vue/reactivity";
 import { IonPage, IonContent, IonToggle, IonLabel, IonItem } from "@ionic/vue";
@@ -72,22 +61,45 @@ const login = () =>{
     router.push("/login/Person");
 }
 
-const next = () => {
-    console.log("Working")
-};
-
 const data = reactive({
   name: "",
   email: "",
   password: "",
+  password2: "",
   phone: "",
   birthdate: "",
+  country:"",
+  state: "",
   city: "",
   adress: "",
+  error1:false,
+  error2:false,
+  error3:false,
 });
 
 const signupuser = async () => {
-  const res = await fetch(`http://127.0.0.1:8000/user/create`, {
+  const expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  const error2 = expReg.test(data.email)
+
+  try{
+    if(data.password != data.password2){
+    data.error1 = true
+    data.error2 = false
+    data.error3 = false
+  } else if (error2 != true){
+    data.error2 = true
+    data.error3 = false
+    data.error1 = false
+  } else if (data.password.length < 8){
+    data.error3 = true
+    data.error2 = false
+    data.error1 = false
+  }
+  else{
+    data.error1 = false
+    data.error2 = false
+    data.error3 = false
+    const res = await fetch(`http://127.0.0.1:8000/user/create`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -97,6 +109,11 @@ const signupuser = async () => {
   /* setTimeout(() => {
     router.push("/login/Person");
   }, 3000); */
+  }
+  } catch(err){
+    console.log(err)
+  }
+
 };
 
 </script>
@@ -162,12 +179,24 @@ const signupuser = async () => {
 }
   
 .log {
-    border: solid 1px;
+  border: none;
     border-radius: 5px;
     padding: 10px;
     width: 100%;
     height: 100%;
     margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logf {
+    color: rgb(94, 94, 94);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
   
 .blank1 {

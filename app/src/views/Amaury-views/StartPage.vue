@@ -9,6 +9,7 @@
           <span class="h1">¡Bienvenido!</span>
           </Transition>
           <span class="h2">Crea tu cuenta y disfruta de las promociones disponibles paratí</span>
+          <div class="cho-container"></div>
           <div class="cbutton" @click="TypeUser">
             <button class="button">Empecemos</button>
           </div>
@@ -17,12 +18,11 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 import { reactive } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
-
 import { on } from "dom7";
 
 const data = reactive({
@@ -30,6 +30,10 @@ const data = reactive({
 });
 
 const router = useRouter();
+
+const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
+  locale: "es-CO",
+})
 
 const toggleSidebar = () => {
   if (data.open == true){
@@ -45,6 +49,16 @@ const TypeUser = () => {
 
 onMounted(()=>{
   toggleSidebar();
+
+  mp.checkout({
+    preference: {
+      id: '309983318-dbc8ba8e-7f1d-466f-a5c3-e5268b83e1e5',
+    },
+    render: {
+      container: ".cho-container",
+      label: "Pagar",
+    },
+  });
 })
 
 </script>

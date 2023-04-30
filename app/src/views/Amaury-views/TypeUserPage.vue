@@ -25,7 +25,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 import { reactive } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";

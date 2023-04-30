@@ -24,7 +24,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {
   IonTabBar,
   IonTabButton,

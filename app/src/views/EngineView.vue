@@ -3,7 +3,7 @@
     <ion-content class="color"> </ion-content>
   </ion-page>
 </template>
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 import { onMounted } from "vue";
 

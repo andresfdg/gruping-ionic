@@ -15,7 +15,7 @@
 
           <div class="second">
             <div class="blank1">
-              <span style="font-size: 80%">Email</span>
+              
             </div>
             <input
               type="text"
@@ -24,12 +24,11 @@
               v-model="data.email"
             />
             <div class="blank2">
-              <span style="font-size: 80%">Contraseña</span>
             </div>
             <input
               type="text"
               class="log"
-              placeholder="email"
+              placeholder="password"
               v-model="data.password"
             />
           </div>
@@ -52,7 +51,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, reactive } from "@vue/runtime-core";
@@ -173,13 +172,16 @@ const login = async () => {
   height: 45%;
 }
 
-.log {
-  border: solid 1px;
-  border-radius: 5px;
+.log{
+ border:none;
+  
   padding: 10px;
   width: 100%;
   height: 100%;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 4px;
+  
 }
 
 .blank1 {

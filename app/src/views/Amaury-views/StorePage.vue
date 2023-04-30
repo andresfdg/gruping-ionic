@@ -8,7 +8,7 @@
     <ion-content>
         <div class="block1">
             <div class="header">
-            <span class="title">{{data.store.name}}</span>
+            <span class="title">  {{data.store.name}}  </span>
             <span>Cra 10# 28-71</span>
             </div>
             <div class="searchbar">
@@ -21,7 +21,7 @@
                 <div class="store"> Tiendas</div>
             </div>
         </div>
-        <div v-for="(i, a) in data.items" :key="i" class="items">
+         <div v-for="(i, a) in data.items" :key="i" class="items">
           <ItemCardUserVue
             :name="i.name"
             :category="i.category"
@@ -33,18 +33,12 @@
             @funt="items"
             @funt2="xx"
           ></ItemCardUserVue>
-        </div>
+        </div> 
     </ion-content>
   </ion-page>
 </template>
   
-<script setup lang="ts">
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+<script setup>
 import {
 IonPage,
 IonHeader,
@@ -52,21 +46,14 @@ IonToolbar,
 IonTitle,
 IonContent,
 IonSearchbar,
-IonInfiniteScroll,
-IonInfiniteScrollContent,
 } from "@ionic/vue";
-import { onMounted, reactive, ref } from "vue";
-import ModalCompo from "../../components/ModalCompo.vue";
-import StoreCard from "../../components/StoreCard.vue";
-import InfiPage from "@/components/InfiPage.vue";
-import { useRouter, useRoute } from "vue-router";
+import { onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 import ItemCardUserVue from "../../components/ItemCardUser.vue";
 
 const router = useRoute();
 
 const data = reactive({
-    list: ["Todo", "Tecnologia", "Ropa", "Accesorios", "higiene", "Deporte", "Hogar"],
-    modules: [Navigation, Pagination, Scrollbar, A11y],
     query: "",
     name: "hola",
     user: {},
@@ -98,21 +85,6 @@ const store = () => {
         },
     }).then((res) => res.json()).then((da) => (data.store = da));
 };
-  
-const stores = async () => {
-    fetch("http://127.0.0.1:8000/allstore")
-      .then((res) => res.json())
-      .then((da) => (data.stores = da));
-  };
-  
-const items = reactive([]);
-  
-const generateItems = () => {
-    const count = data.stores.length + 1;
-    for (let i = 0; i < 50; i++) {
-      items.push(count + i);
-    }
-};
 
 const getitems = async () => {
   const id = router.params.id;
@@ -136,20 +108,13 @@ const getitems = async () => {
       .then((res) => res.json())
       .then((x) => data.availability.push(x));
   } */
-};
-  
-const ionInfinite = (ev) => {
-    generateItems();
-    setTimeout(() => ev.target.complete(), 500);
-};
-
-generateItems();
+}; 
 
 onMounted(() => {
     getinfouser();
-    store();
     getitems();
-});
+}); 
+
 </script>
   
 <style scoped lang="scss">
@@ -184,7 +149,6 @@ h1 {
     color: rgb(93, 93, 93);
 }
 }
-
 .filters {
 display: flex;
 box-shadow: rgba(38, 38, 43, 0.2) 0px 7px 29px 0px;

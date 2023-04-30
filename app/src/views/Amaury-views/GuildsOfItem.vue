@@ -33,7 +33,17 @@
               <button class="btguildt" v-if="data.open" @click="() => activeformguild()" >
                 create new guild
               </button>
-              <CreateGuildForm></CreateGuildForm>
+              <CreateGuildForm 
+                :guild_id=1
+                :item=1
+                :item_name="'jose'" 
+                :actual_pop=10
+                :category="'juego'"
+                :price=1
+                :open=true
+                :discount= "15"  
+                :life_time=10
+                :Max_pop=10 ></CreateGuildForm>
             </div>
           </div>
         </div>
@@ -125,23 +135,18 @@
 </ion-page>
 </template>
     
-  <script setup lang="ts" >
-  import { Swiper, SwiperSlide } from "swiper/vue";
-  import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-  import "swiper/css";
-  import "swiper/css/navigation";
-  import "swiper/css/pagination";
-  import "swiper/css/scrollbar";
-  import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonSearchbar,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
-  } from "@ionic/vue";
+<script setup>
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import {
+IonPage,
+IonHeader,
+IonToolbar,
+IonTitle,
+IonContent,
+} from "@ionic/vue";
 import CreateGuildForm from "../../components/CreateGuildForm.vue";
 import { onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -173,9 +178,9 @@ const router = useRoute();
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
 
 
-//const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
-  //locale: "es-CO",
-//});
+const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
+  locale: "es-CO",
+});
 
 const getguields = async () => {
   const id = router.params.id;

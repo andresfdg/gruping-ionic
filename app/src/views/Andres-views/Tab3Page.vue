@@ -77,7 +77,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -91,22 +91,15 @@ import {
   IonTitle,
   IonContent,
   IonSearchbar,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonList,
-  IonItem,
   IonAvatar,
   IonLabel,
 } from "@ionic/vue";
 import { onMounted, reactive, ref } from "vue";
 import ModalCompo from "../../components/ModalCompo.vue";
 import StoreCard from "../../components/StoreCard.vue";
-import InfiPage from "@/components/InfiPage.vue";
 
 const data = reactive({
   stores: [],
