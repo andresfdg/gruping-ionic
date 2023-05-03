@@ -83,7 +83,7 @@ const data = reactive({
   exito: false,
   cargando:false,
 });
-
+/*  */
 const terminos = () =>{
   data.aceptar = !data.aceptar
   console.log(data.aceptar)
