@@ -28,15 +28,17 @@
             <br>
             
             <ion-item>
-                <ion-label style="font-size: 13px" >Aceptar terminos de uso</ion-label>
-                <ion-toggle slot="end"></ion-toggle>
+                <ion-label style="font-size: 13px" ><TC></TC></ion-label>
+                <ion-toggle slot="end" @click="terminos"></ion-toggle>
             </ion-item>
             <span v-if="data.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
             <span v-if="data.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
             <span v-if="data.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
-            <span v-if="data.exito" style="color: blueviolet;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
-            <div class="cbutton" @click="signupuser">
-              <button class="button">Continuar</button>
+            <span v-if="data.error4" style="color: blueviolet;margin: 1px;">este correo o celular ya tienen cuenta asociada</span>
+            <span v-if="data.cargando" style="color: green;margin: 1px;">Cargando...</span>
+            <span v-if="data.exito" style="color: green;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
+            <div class="cbutton" v-if="data.aceptar" @click="signupuser">
+              <button class="button" v-if="data.aceptar">Continuar</button>
             </div>
             <div>
               <p style="font-size: 10px">
@@ -54,6 +56,7 @@ import { labeledStatement } from '@babel/types';
 import { reactive } from "@vue/reactivity";
 import { IonPage, IonContent, IonToggle, IonLabel, IonItem } from "@ionic/vue";
 import { useRouter } from "vue-router";
+import TC from "../../components/T&C.vue";
   
 const router = useRouter();
   
@@ -72,10 +75,19 @@ const data = reactive({
   state: "",
   city: "",
   adress: "",
+  aceptar:false,
   error1:false,
   error2:false,
   error3:false,
+  error4:false,
+  exito: false,
+  cargando:false,
 });
+
+const terminos = () =>{
+  data.aceptar = !data.aceptar
+  console.log(data.aceptar)
+}
 
 const signupuser = async () => {
   const expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -99,16 +111,43 @@ const signupuser = async () => {
     data.error1 = false
     data.error2 = false
     data.error3 = false
+    data.cargando = true
     const res = await fetch(`http://127.0.0.1:8000/user/create`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-type": "application/json; charset=UTF-8" },
   });
+
   const resp = await res.json()
-  console.log(resp.name)
-  /* setTimeout(() => {
+
+  if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
+    data.exito=true
+    data.cargando = false
+    data.error1 = false
+    data.error2 = false
+    data.error3 = false
+    data.error4 = false
+    console.log(resp)
+    setTimeout(() => {
+    data.exito=false
     router.push("/login/Person");
-  }, 3000); */
+  }, 5000); 
+  }else{
+    console.log(resp)
+    data.cargando = false
+    data.error4 = true
+
+    setTimeout(() => {
+    data.exito=false
+    data.cargando = false
+    data.error1 = false
+    data.error2 = false
+    data.error3 = false
+    data.error4 = false
+  }, 5000); 
+  
+  }
+  
   }
   } catch(err){
     console.log(err)
