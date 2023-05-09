@@ -1,6 +1,6 @@
 <template>
     <div>
-      <span id="open-modal">Aceptar terminos de uso</span>
+      <span id="open-modal" style="text-decoration: underline rgb(130, 0, 255) 2px;">Aceptar terminos de uso</span>
       <ion-modal ref="modal" trigger="open-modal">
         <ion-content>
             <div class="container">

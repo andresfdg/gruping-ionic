@@ -15,7 +15,7 @@
               <input type="password" class="log" v-model="data.password" placeholder="contraseña"/>
               <input type="password" class="log" v-model="data.password2" placeholder="confirma contraseña"/>
               <input type="text" class="log" v-model="data.phone" placeholder="celular"/>
-              <input type="date" class="logf" placeholder="mm/dd/yy" v-model="data.birthdate"/>
+              <input type="date" class="logf" placeholder="mm/dd/yy" v-model="data.birthdate" v-if='route.params.typeuser == "Person"'/>
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-columns: 1fr 1fr;">
               <input style="width: 99%; margin: 1%; height: 95%;" type="text" class="log" placeholder="pais" v-model="data.country"/>
@@ -31,14 +31,14 @@
                 <ion-label style="font-size: 13px" ><TC></TC></ion-label>
                 <ion-toggle slot="end" @click="terminos"></ion-toggle>
             </ion-item>
-            <span v-if="data.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
-            <span v-if="data.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
-            <span v-if="data.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
-            <span v-if="data.error4" style="color: blueviolet;margin: 1px;">este correo o celular ya tienen cuenta asociada</span>
-            <span v-if="data.cargando" style="color: green;margin: 1px;">Cargando...</span>
-            <span v-if="data.exito" style="color: green;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
-            <div class="cbutton" v-if="data.aceptar" @click="signupuser">
-              <button class="button" v-if="data.aceptar">Continuar</button>
+            <span v-if="validations.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
+            <span v-if="validations.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
+            <span v-if="validations.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
+            <span v-if="validations.error4" style="color: blueviolet;margin: 1px;">este correo o celular ya tienen cuenta asociada</span>
+            <span v-if="validations.cargando" style="color: green;margin: 1px;">Cargando...</span>
+            <span v-if="validations.exito" style="color: green;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
+            <div class="cbutton" v-if="validations.aceptar && validations.cargando==false" @click="signupuser">
+              <button class="button" v-if="validations.aceptar && validations.cargando==false">Continuar</button>
             </div>
             <div>
               <p style="font-size: 10px">
@@ -52,13 +52,14 @@
   </template>
   
 <script setup>
-import { labeledStatement } from '@babel/types';
 import { reactive } from "@vue/reactivity";
 import { IonPage, IonContent, IonToggle, IonLabel, IonItem } from "@ionic/vue";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import TC from "../../components/T&C.vue";
   
 const router = useRouter();
+const route = useRoute();
   
 const login = () =>{
     router.push("/login/Person");
@@ -75,6 +76,9 @@ const data = reactive({
   state: "",
   city: "",
   adress: "",
+});
+
+const validations = reactive({
   aceptar:false,
   error1:false,
   error2:false,
@@ -85,8 +89,8 @@ const data = reactive({
 });
 /*  */
 const terminos = () =>{
-  data.aceptar = !data.aceptar
-  console.log(data.aceptar)
+  validations.aceptar = !validations.aceptar
+  console.log(route.params.typeuser)
 }
 
 const signupuser = async () => {
@@ -95,64 +99,102 @@ const signupuser = async () => {
 
   try{
     if(data.password != data.password2){
-    data.error1 = true
-    data.error2 = false
-    data.error3 = false
+    validations.error1 = true
+    validations.error2 = false
+    validations.error3 = false
   } else if (error2 != true){
-    data.error2 = true
-    data.error3 = false
-    data.error1 = false
+    validations.error2 = true
+    validations.error3 = false
+    validations.error1 = false
   } else if (data.password.length < 8){
-    data.error3 = true
-    data.error2 = false
-    data.error1 = false
+    validations.error3 = true
+    validations.error2 = false
+    validations.error1 = false
   }
   else{
-    data.error1 = false
-    data.error2 = false
-    data.error3 = false
-    data.cargando = true
-    const res = await fetch(`http://127.0.0.1:8000/user/create`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-type": "application/json; charset=UTF-8" },
-  });
+    validations.error1 = false
+    validations.error2 = false
+    validations.error3 = false
+    validations.cargando = true
 
-  const resp = await res.json()
+    if( (route.params.typeuser).toString() == "Person"){
 
-  if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
-    data.exito=true
-    data.cargando = false
-    data.error1 = false
-    data.error2 = false
-    data.error3 = false
-    data.error4 = false
-    console.log(resp)
-    setTimeout(() => {
-    data.exito=false
-    router.push("/login/Person");
-  }, 5000); 
-  }else{
-    console.log(resp)
-    data.cargando = false
-    data.error4 = true
+      const res = await fetch(`http://127.0.0.1:8000/user/create`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
+    
+      const resp = await res.json()
 
-    setTimeout(() => {
-    data.exito=false
-    data.cargando = false
-    data.error1 = false
-    data.error2 = false
-    data.error3 = false
-    data.error4 = false
-  }, 5000); 
-  
-  }
-  
+      if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
+        validations.exito=true
+        validations.cargando = false
+        validations.error1 = false
+        validations.error2 = false
+        validations.error3 = false
+        validations.error4 = false
+        console.log(resp)
+        setTimeout(() => {
+        validations.exito=false
+        router.push("/login/Person");
+      }, 5000);
+
+      } else{
+        console.log(resp)
+        validations.cargando = false
+        validations.error4 = true
+
+        setTimeout(() => {
+        validations.exito=false
+        validations.cargando = false
+        validations.error1 = false
+        validations.error2 = false
+        validations.error3 = false
+        validations.error4 = false
+      }, 5000);}
+
+    }else{
+      const res = await fetch(`http://127.0.0.1:8000/storeuser/create`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
+    
+      const resp = await res.json()
+
+      if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
+        validations.exito=true
+        validations.cargando = false
+        validations.error1 = false
+        validations.error2 = false
+        validations.error3 = false
+        validations.error4 = false
+        console.log(resp)
+        setTimeout(() => {
+        validations.exito=false
+        router.push("/login/Person");
+      }, 5000);
+
+      } else{
+        console.log(resp)
+        validations.cargando = false
+        validations.error4 = true
+        setTimeout(() => {
+        validations.exito=false
+        validations.cargando = false
+        validations.error1 = false
+        validations.error2 = false
+        validations.error3 = false
+        validations.error4 = false
+      }, 5000);}
+      
+
+    }
   }
   } catch(err){
     console.log(err)
   }
-
 };
 
 </script>
