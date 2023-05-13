@@ -3,6 +3,25 @@
     <ion-content>
       <ion-tabs>
         <ion-router-outlet></ion-router-outlet>
+
+          <ion-menu contentId="main-content">
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Menu Content</ion-title>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">This is the menu content.</ion-content>
+          </ion-menu>
+
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+              <ion-title>Menu</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          
         <ion-tab-bar slot="bottom">
           <ion-tab-button tab="tab1" href="/tabs/home">
             <img src="../../public/img/HomeIcon.png" alt="" class="tadicon" />
@@ -29,14 +48,16 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonLabel,
-  IonIcon,
+  IonToolbar,
+  IonMenuToggle,
+  IonButton,
+  IonHeader,
   IonPage,
   IonRouterOutlet,
   IonContent,
+  IonMenu,
+  IonTitle,
 } from "@ionic/vue";
-import { reactive } from "vue";
-import { ellipse, square, triangle } from "ionicons/icons";
 </script>
 
 <style scoped>

@@ -11,7 +11,7 @@
 
         <div class="cardbar"> 
           <div :class="data.isselect1 ? 'sel' : 'option'" @click="filter">En curso</div> 
-          <span :class="data.isselect2 ? 'sel' : 'option'" @click="filter2">En espera</span> 
+          <span :class="data.isselect2 ? 'sel' : 'option'" @click="filter2">Espera</span> 
           <span :class="data.isselect3 ? 'sel' : 'option'" @click="filter3">Todas</span> 
         </div>
 

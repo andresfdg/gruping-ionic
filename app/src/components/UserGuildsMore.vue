@@ -55,7 +55,7 @@
                 <span style="margin-top: 70px;">70000</span>
               </div>
             </div>
-            <button class="button">Ir a pagar</button>
+            <button class="button">compartir gremio</button>
           </div>
         </ion-content >
       </ion-modal>

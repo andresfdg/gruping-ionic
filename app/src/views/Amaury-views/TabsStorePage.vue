@@ -14,7 +14,6 @@
           <ion-tab-button tab="tab3" href="/tabs/store/home">
             <img src="../../../public/img/GroupIcon.png" alt="" class="tadicon" />
           </ion-tab-button>
-
           <ion-tab-button tab="tab4" href="/tabs/store/home">
             <img src="../../../public/img/SettingIcon.png" alt="" class="tadicon" />
           </ion-tab-button>

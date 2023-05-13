@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content>
         <div style="margin: 10px;">
-            <h1 style="align-self: left; font-size: xx-large; color: rbg(94,94,94); font-weight: bolder;">Mis Gremios</h1>
+            <h1>Mis Gremios</h1>
             <ion-infinite-scroll @ionInfinite="ionInfinite">
                 <ion-infinite-scroll-content
                 loading-text="Please wait..."
@@ -80,6 +80,13 @@ display: flex;
 justify-content: space-between;
 margin: 12px;
 margin-top: 1px;
+}
+
+h1{
+  align-self: left; 
+  font-size: xx-large; 
+  color: rgb(94,94,94);
+  font-weight: 1000;
 }
 
 ion-content{
