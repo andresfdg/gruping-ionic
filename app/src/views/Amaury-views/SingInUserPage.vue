@@ -4,7 +4,7 @@
         <div class="principal">
           <div class="jointd">
             <span class="h1">¡Bienvenido!</span>
-            <span class="h2">Crea tu cuenta</span>
+            <span class="h2">Crea tu cuenta y disfruta de las promociones disponibles para ti</span>
           </div>
           <div class="joint">
             <span class="h1">Registra tu cuenta</span>
@@ -31,20 +31,24 @@
                 <ion-label style="font-size: 13px" ><TC></TC></ion-label>
                 <ion-toggle slot="end" @click="terminos"></ion-toggle>
             </ion-item>
+
             <span v-if="validations.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
             <span v-if="validations.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
             <span v-if="validations.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
             <span v-if="validations.error4" style="color: blueviolet;margin: 1px;">este correo o celular ya tienen cuenta asociada</span>
             <span v-if="validations.cargando" style="color: green;margin: 1px;">Cargando...</span>
-            <span v-if="validations.exito" style="color: green;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
-            <div class="cbutton" v-if="validations.aceptar && validations.cargando==false" @click="signupuser">
-              <button class="button" v-if="validations.aceptar && validations.cargando==false">Continuar</button>
-            </div>
+            <span v-if="validations.exito && route.params.typeuser=='Person'" style="color: green;margin: 1px;">Usuario creado, revisa tu correo para activarlo</span>
+            <span v-if="validations.exito && route.params.typeuser=='Store'" style="color: green;margin: 1px;">Usuario de tienda creado, Felicidades</span>
+            
+        
+            <button class="button" v-if="validations.aceptar && validations.cargando==false" @click="signupuser">Continuar</button>
+            
             <div>
-              <p style="font-size: 10px">
-                ¿Ya tienes una cuenta? <strong @click="login">Ingresa aquí</strong>
+              <p class="textblue">
+                ¿Ya tienes una cuenta? <strong @click="login" style="text-decoration: underline;">Ingresa aquí</strong>
               </p>
             </div>
+            
           </div>
         </div>
       </ion-content>
@@ -62,7 +66,7 @@ const router = useRouter();
 const route = useRoute();
   
 const login = () =>{
-    router.push("/login/Person");
+    router.push(`/login/${route.params.typeuser}`);
 }
 
 const data = reactive({
@@ -173,7 +177,7 @@ const signupuser = async () => {
         console.log(resp)
         setTimeout(() => {
         validations.exito=false
-        router.push("/login/Person");
+        router.push("/login/Store");
       }, 5000);
 
       } else{
@@ -201,115 +205,115 @@ const signupuser = async () => {
   
 <style scoped lang="scss">
 .block1 {
-    --background: rgb(184, 250, 219);
-    --background: linear-gradient(
-      0deg,
-      rgba(184, 250, 219, 1) 0%,
-      rgba(222, 216, 252, 1) 100%
-    );
-  }
-  
+  --background: linear-gradient(0deg, var(--primary-linear2) 0%, var(--second-linear2) 100%);
+}
 .principal {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
-  
-  
 .jointd {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 15px;
-    justify-content: end;
-    text-align: center;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 15px;
+  justify-content: end;
+  text-align: center;
+  position: relative;
 }
-  
 .joint {
-    margin-top: 20px;
-    background-color: white;
-    width: 90%;
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 15px;
-    justify-content: start;
-    text-align: center;
-  
-    .h1 {
-      padding: 1px;
-      margin-left: 1px;
-      font-family: sans-serif;
-      font-weight: 1000;
-      font-size: 150%;
-      color: rgb(94, 94, 94);
-      margin-bottom: 10px;
-    }
+  margin-top: 20px;
+  background-color: var(--gray-background);
+  width: 90%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 15px;
+  justify-content: start;
+  text-align: center;
+  font-family: var(--main-font), sans-serif;
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  .h1 {
+    padding: 1px;
+    margin-left: 1px;
+    font-family: sans-serif;
+    font-weight: 1000;
+    font-size: 150%;
+    color: rgb(94, 94, 94);
+    margin-bottom: 10px;
+  }
 }
   
 .second {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 45%;
+  background-color: var(--gray-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 45%;
 }
-  
 .log {
   border: none;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: var(--gray-background);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+input:focus {
+  border: 2px solid var(--violete-text);
+  font-family: var(--main-font);
+  outline: none; 
+}
+.logf {
+  background-color: var(--gray-background);
+  color: rgb(94, 94, 94);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.textblue{
+  font-size: 13px;
+  color: var(--violete-text);
+  font-family: var(--main-font);
 }
 
-.logf {
-    color: rgb(94, 94, 94);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-  
-.blank1 {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    justify-content: start;
+ion-item{
+  --background: var(--gray-background);
 }
 
 ion-toggle{
-    height: 10px;
-    width: 55px;
+  height: 10px;
+  width: 55px;
 
-    padding: 12px;
+  padding: 12px;
 
-    --background: #ddd;
-    --background-checked: #ddd;
+  --background: #ddd;
+  --background-checked: #ddd;
 
-    --handle-background: rgba(222, 216, 252, 1);
-    --handle-background-checked: rgba(184, 250, 219, 1);
+  --handle-background: rgba(222, 216, 252, 1);
+  --handle-background-checked: rgba(184, 250, 219, 1);
 
-    --handle-width: 25px;
-    --handle-height: 27px;
-    --handle-max-height: auto;
-    --handle-spacing: 6px;
+  --handle-width: 25px;
+  --handle-height: 27px;
+  --handle-max-height: auto;
+  --handle-spacing: 6px;
 
-    --handle-border-radius: 4px;
-    --handle-box-shadow: none;
+  --handle-border-radius: 4px;
+  --handle-box-shadow: none;
 
-    /* Required for iOS handle to overflow the height of the track */
-    overflow: visible;
-    contain: none;
+  /* Required for iOS handle to overflow the height of the track */
+  overflow: visible;
+  contain: none;
 }
 
 .h1 {
@@ -318,7 +322,7 @@ ion-toggle{
     font-family: sans-serif;
     font-weight: 1000;
     font-size: 200%;
-    color: rgb(130, 0, 255);
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
   
@@ -328,13 +332,12 @@ ion-toggle{
     margin-left: 1px;
     font-family: sans-serif;
     font-size: 110%;
-    color: rgb(130, 0, 255);
+    color: var(--primary-color);
 }
-  
-.cbutton {
+.button {
   margin-right: 40px;
   margin-left: 40px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -342,22 +345,18 @@ ion-toggle{
   border-radius: 10px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-}
-
-.cbutton:active {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button {
   font-size: 100%;
   font-weight: 550;
   color: rgb(94, 94, 94);
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: var(--main-font), sans-serif;
 }
-
 .button:active {
   transform: translateY(-2px);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

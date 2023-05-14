@@ -1,25 +1,35 @@
 <template>
   <ion-page >
     <ion-content class="block1">
+      <!-- general div -->
       <div class="principal">
-        <Transition name="bounce">
-        <img src="../../../public/img/manchatype.jpg" class="mancha1" v-if="data.open" />
-        </Transition>
+        <!-- logo -->
+        <div class="logodiv">
+          <img src="../../../public/img/logoicon.svg" class="logoicon"/>
+          <img src="../../../public/img/logoletter.svg" class="logoletter"/>
+        </div>
+        <!-- principal image -->
+        <img src="../../../public/img/typeuser.png" class="mancha1"/>
+        <!-- gray container -->
         <div class="joint">
+
+          <!-- user options -->
           <span class="h1">Elige tu tipo</span>
           <div class="second">
             <div :class="data.store ? 'sel' : 'blank1'" id="1" @click="typestore">
-              <img src="../../../public/img/Startienda.jpg" class="ima" />
+              <img src="../../../public/img/storeuser.svg" class="ima" />
+              <span>Tienda</span>
             </div>
             <div :class="data.person ? 'sel2' : 'blank2'" @click="typeperson">
-              <img src="../../../public/img/Staruser.jpg" class="ima" />
+              <img src="../../../public/img/personuser.svg" class="ima" />
+              <span>Persona</span>
             </div>
           </div>
-          <div class="cbutton" @click="tab1">
-            <button class="button">Continuar</button>
-          </div>
-          <p v-if = data.select style="font-size: 10px;">Selecciona el tipo de usuario por favor</p>
+          <!-- action button -->
+          <button class="button" @click="tab1">Continuar</button>
+          <p v-if = data.select class="textblue" style="color: blueviolet; margin: 5px;">Selecciona el tipo de usuario por favor</p>
         </div>
+
       </div>
     </ion-content>
   </ion-page>
@@ -28,9 +38,7 @@
 <script setup>
 import { IonPage, IonContent } from "@ionic/vue";
 import { reactive } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
-
 
 const data = reactive ({
   typeuser: "",
@@ -65,44 +73,44 @@ const typeperson = () => {
   data.store = false;
 };
 
-const toggleSidebar = () => {
-  if (data.open == true){
-    data.open = false;
-  } else {
-    data.open = true;
-  }
-}
-
-onMounted(()=>{
-  toggleSidebar();
-})
-
-
 </script>
 
 <style scoped lang="scss">
 .block1 {
-  --background: rgb(200, 201, 250);
+  --background: linear-gradient(0deg, var(--primary-linear2) 0%, var(--second-linear2) 100%);
 }
-
 .principal {
-  background-color: rgb(200, 201, 250);
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
   width: 100%;
   height: 90%;
+  font-family: var(--main-font), sans-serif;
 }
-
-.mancha1 {
-  height: 55%;
+.logodiv{
+  padding-top: 10px;
+  padding-left: 10px;
+  align-items: start;
+  position: relative;
   width: 100%;
 }
-
+.logoicon{
+  position: absolute;
+  z-index: 1;
+}
+.logoletter{
+  position: absolute;
+  z-index: 2;
+  margin-left: 15px;
+}
+.mancha1 {
+  height: 60%;
+  width: 100%;
+}
 .joint {
   margin-top: 20px;
-  background-color: white;
+  background-color: var(--gray-background);
   width: 90%;
   height: 40%;
   display: flex;
@@ -111,89 +119,104 @@ onMounted(()=>{
   border-radius: 15px;
   justify-content: start;
   text-align: center;
+  font-family: var(--main-font), sans-serif;
+  box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-
 .second {
-  background-color: white;
+  background-color: var(--gray-background);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 45%;
+  font-family: var(--main-font), sans-serif;
 }
-
 .blank1 {
   margin-right: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--gray-background);
   width: 50%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-text);
+  font-family: var(--main-font), sans-serif;
 }
-
 .blank2 {
   margin-left: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--gray-background);
   width: 50%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-text);
+  font-family: var(--main-font), sans-serif;
 }
-
 .sel{
-  border: solid 1px rgb(0, 255, 251);
+  border: solid 1px var(--violete-text);
   margin-right: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--gray-background);
   width: 50%;
   height: 100%;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-text);
+  font-family: var(--main-font), sans-serif;
 }
-
 .sel2{
-  border: solid 1px rgb(0, 255, 251);
+  border: solid 1px var(--violete-text);
   margin-left: 10px;
   border-radius: 15px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--gray-background);
   width: 50%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-text);
+  font-family: var(--main-font), sans-serif;
 }
-
 .ima {
-  border-radius: 15px;
-  height: 100%;
-  width: 100%;
+  height: 70%;
+  width: 70%;
+  font-family: var(--main-font), sans-serif;
 }
-
+.textblue{
+  font-size: 14px;
+  color: var(--violete-text);
+  font-family: var(--main-font);
+}
 .h1 {
   padding: 1px;
   margin-left: 1px;
   font-family: sans-serif;
   font-weight: 1000;
   font-size: 200%;
-  color: rgba(94, 94, 94);
+  color: var(--gray-text);
   margin-bottom: 10px;
 }
-
-.h2 {
-  width: 100%;
-  padding: 1px;
-  margin-left: 1px;
-  font-family: sans-serif;
-  font-size: 110%;
-  color: rgb(130, 0, 255);
-}
-
-.cbutton {
+.button {
   margin-right: 40px;
   margin-left: 40px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -201,40 +224,19 @@ onMounted(()=>{
   border-radius: 10px;
   box-shadow: inset 0 -0.1em 0.3em rgba(0, 0, 0, 0.1),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-}
-
-.cbutton:active {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button {
   font-size: 100%;
   font-weight: 550;
   color: rgb(94, 94, 94);
   background-color: rgb(106, 255, 175);
   border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: var(--main-font), sans-serif;
 }
-
 .button:active {
   transform: translateY(-2px);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.bounce-enter-active {
-  animation: bounce-in 0.9s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.9s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 </style>

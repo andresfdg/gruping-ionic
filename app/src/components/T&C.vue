@@ -1,6 +1,6 @@
 <template>
     <div>
-      <span id="open-modal" style="text-decoration: underline rgb(130, 0, 255) 2px;">Aceptar terminos de uso</span>
+      <span id="open-modal" class="textblue">Aceptar terminos de uso</span>
       <ion-modal ref="modal" trigger="open-modal">
         <ion-content>
             <div class="container">
@@ -173,22 +173,17 @@
   import {
     IonModal,
     IonContent,
-    modalController,
   } from "@ionic/vue";
-  
-  const dismiss = () => {
-    /* document.querySelector("ion-modal").dismiss(); */
-    modalController.dismiss();
-  };
-  </script>
-  <style scoped>
+</script>
+
+<style scoped>
 ion-modal {
-    --height: 50%;
-    --border-radius: 16px;
-    --background: rgb(242, 242, 242);
-    --width: 95%;
-    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --height: 50%;
+  --border-radius: 16px;
+  --background: rgb(242, 242, 242);
+  --width: 95%;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 ion-modal::part(backdrop) {
     background: rgb(242, 242, 242);
@@ -205,5 +200,11 @@ ion-content{
     display: flex; 
     flex-direction: column;
     background-color: rgb(242, 242, 242);
+}
+.textblue{
+  font-size: 13px;
+  color: var(--violete-text);
+  font-family: var(--main-font);
+  text-decoration: underline;
 }
 </style>
