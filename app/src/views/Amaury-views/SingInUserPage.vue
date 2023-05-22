@@ -198,7 +198,6 @@ const signupuser = async () => {
         validations.error3 = false
         validations.error4 = false
       }, 5000);}
-    /* hola */     
 
     }
   }
