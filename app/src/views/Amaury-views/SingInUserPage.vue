@@ -99,7 +99,13 @@ const terminos = () =>{
 
 const signupuser = async () => {
   const expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-  const error2 = expReg.test(data.email)
+  const expReg2 = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z a-z]{2,}$/
+
+  let error2 = expReg.test(data.email)
+
+  if (error2==false){
+    error2 = expReg2.test(data.email)
+  }
 
   try{
     if(data.password != data.password2){
@@ -123,15 +129,15 @@ const signupuser = async () => {
 
     if( (route.params.typeuser).toString() == "Person"){
 
-      const res = await fetch(`http://127.0.0.1:8000/user/create`, {
+      const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/user/create`, {
         method: "POST",
         body: JSON.stringify(data),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
+        headers: { "Content-type": "application/json; charset=UTF-8"},
       });
     
       const resp = await res.json()
 
-      if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
+      if (resp !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
         validations.exito=true
         validations.cargando = false
         validations.error1 = false
@@ -159,7 +165,7 @@ const signupuser = async () => {
       }, 5000);}
 
     }else{
-      const res = await fetch(`http://127.0.0.1:8000/storeuser/create`, {
+      const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeuser/create`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -167,7 +173,7 @@ const signupuser = async () => {
     
       const resp = await res.json()
 
-      if (resp.name !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
+      if (resp !== "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"){
         validations.exito=true
         validations.cargando = false
         validations.error1 = false
@@ -192,7 +198,7 @@ const signupuser = async () => {
         validations.error3 = false
         validations.error4 = false
       }, 5000);}
-      
+    /* hola */     
 
     }
   }
