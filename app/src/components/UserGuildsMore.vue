@@ -22,90 +22,31 @@
               ></ion-icon>
             </div>
           </div>
-
-          <div class="actual_people">
-            <div>
-              <ion-icon
-                style="width: 25px; height: 25px"
-                name="people-sharp"
-              ></ion-icon>
-            </div>
-            <div>
-              <span style="font-size: small; margin-left: 5px">
-                {{ props.actual_pop }} Integrantes
-              </span>
-            </div>
-          </div>
-          <span style="font-size: small; color: rgb(130, 0, 255)">
-            Falta {{ props.life_time }} dias para cerrar el grupo</span
-          >
-
-          <div class="guild_conditions">
-            <div class="condition_pop">
-              <span style="font-weight: bolder; font-size: 25px">{{
-                props.Max_pop
-              }}</span>
-              <ion-icon
-                style="width: 25px; height: 25px"
-                name="people-sharp"
-              ></ion-icon>
-            </div>
-
-            <div class="condition_discount">
-              <span style="font-weight: bolder; font-size: 30px"
-                >{{ props.discount }}%</span
-              >
-              <span style="font-weight: bolder; font-size: 25px">off</span>
-            </div>
-
-            <div class="condition_time">
-              <span style="font-weight: bolder; font-size: 25px">{{
-                props.life_time
-              }}</span>
-              <span style="font-weight: bolder; font-size: 19px">días</span>
-            </div>
-          </div>
-
-          <div class="buy_options">
-            <div style="display: flex; flex-direction: column">
-              <span style="font-size: x-large; font-weight: bolder"
-                >Resumen de la Orden</span
-              >
-              <span style="margin: 2px">Tenis papprimo</span>
-              <span style="margin: 2px">costo total: </span>
-            </div>
-
-            <div
-              style="padding-top: 12px; display: flex; flex-direction: column"
-            >
-              <span style="margin-top: 70px">70000</span>
-            </div>
-          </div>
-          <button class="button">compartir gremio</button>
-        </div>
-      </ion-content>
-    </ion-modal>
-  </div>
-</template>
-
+        </ion-content >
+      </ion-modal>
+    </div>
+  </template>
+  
 <script setup>
-/* eslint-disable */
-import { IonModal, IonContent, modalController } from "@ionic/vue";
-
-import { reactive } from "vue";
-const data = reactive({
-  total_items: 0,
-  price: 0,
-});
+import {
+  IonModal,
+  IonContent,
+  modalController,
+} from "@ionic/vue";
 
 const props = defineProps({
   guild_id: Number,
   item: Number,
+<<<<<<< HEAD
   item_name: String,
+=======
+  item_name: String, 
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   actual_pop: Number,
   category: String,
   price: Number,
   open: Boolean,
+<<<<<<< HEAD
   discount: String,
   life_time: Number,
   Max_pop: Number,
@@ -118,6 +59,17 @@ const dismiss = () => {
 </script>
 
 <style scoped>
+=======
+  discount: String, 
+  life_time: Number,
+  Max_pop: Number, 
+});
+  
+</script>
+  
+<style scoped>
+
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
 ion-modal {
   --height: 50%;
   --border-radius: 16px;
@@ -131,6 +83,7 @@ ion-modal::part(backdrop) {
   opacity: 1;
 }
 
+<<<<<<< HEAD
 ion-content {
   --background: rgb(242, 242, 242);
 }
@@ -146,10 +99,28 @@ ion-content {
   display: flex;
   flex-direction: row;
   align-items: left;
+=======
+ion-content{
+  --background: rgb(242, 242, 242);
+}
+.container{
+  padding-top: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex; 
+  flex-direction: column;
+  background-color: rgb(242, 242, 242);
+}
+.product_name{
+  display: flex;
+  flex-direction: row;
+  align-items:left;
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(242, 242, 242);
   color: rgb(94, 94, 94);
   font-weight: bolder;
 }
+<<<<<<< HEAD
 .actual_people {
   display: flex;
   flex-direction: row;
@@ -158,12 +129,26 @@ ion-content {
   color: rgb(130, 0, 255);
 }
 .guild_conditions {
+=======
+.actual_people{
+  display: flex;
+  flex-direction: row;
+  align-items:start;
+  margin-top: 10px;
+  color: rgb(130,0,255);
+}
+.guild_conditions{
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(242, 242, 242);
 }
+<<<<<<< HEAD
 .condition_pop {
+=======
+.condition_pop{
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 70px;
@@ -175,8 +160,14 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
 }
 .condition_discount {
+=======
+
+}
+.condition_discount{
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 100px;
@@ -188,8 +179,14 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
 }
 .condition_time {
+=======
+
+}
+.condition_time{
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 70px;
@@ -203,7 +200,11 @@ ion-content {
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .buy_options {
+=======
+.buy_options{
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -226,6 +227,10 @@ input:focus {
   border: 1px solid rgb(104, 255, 174);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
 .button {
   margin-right: 40px;
   margin-left: 40px;
@@ -251,4 +256,10 @@ input:focus {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+<<<<<<< HEAD
 </style>
+=======
+
+</style>
+    
+>>>>>>> 3264113523d1171bf465122faa0e50303eef16a5

@@ -115,11 +115,6 @@ const props = defineProps({
   life_time: Number,
   Max_pop: Number,
 });
-
-const dismiss = () => {
-  /* document.querySelector("ion-modal").dismiss(); */
-  modalController.dismiss();
-};
 </script>
 
 <style scoped>

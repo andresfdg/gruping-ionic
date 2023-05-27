@@ -41,14 +41,10 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonLabel,
-  IonIcon,
   IonPage,
   IonRouterOutlet,
   IonContent,
 } from "@ionic/vue";
-import { reactive } from "vue";
-import { ellipse, square, triangle } from "ionicons/icons";
 </script>
 
 <style scoped>
