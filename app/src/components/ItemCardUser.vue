@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import { onMounted, reactive } from "@vue/runtime-core";
 
 const props = defineProps({

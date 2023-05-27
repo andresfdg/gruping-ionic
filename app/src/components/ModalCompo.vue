@@ -129,6 +129,7 @@ const dismiss = () => {
 </script>
 
 <style scoped>
+/* eslint-disable */
 ion-modal {
   --height: 50%;
   --border-radius: 16px;

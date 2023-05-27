@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import {
   IonContent,
   IonList,

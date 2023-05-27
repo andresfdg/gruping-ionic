@@ -1,26 +1,22 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-
       <div class="principal">
         <img src="../../../public/img/logologinicon.svg" class="logoicon" />
         <img src="../../../public/img/logologinletter.svg" class="logoletter" />
 
         <div class="joint">
-
           <span class="h1">Ingresa a tu cuenta</span>
 
           <div class="second">
-            <div class="blank1">
-            </div>
+            <div class="blank1"></div>
             <input
               type="text"
               class="log"
               placeholder="email"
               v-model="data.email"
             />
-            <div class="blank2">
-            </div>
+            <div class="blank2"></div>
             <input
               type="password"
               class="log"
@@ -29,25 +25,29 @@
             />
           </div>
 
-          <span v-if="data.alert" style="color: blueviolet; margin: 1px;">Email/Password Fail</span>
+          <span v-if="data.alert" style="color: blueviolet; margin: 1px"
+            >Email/Password Fail</span
+          >
           <span class="textblue forgot">He olvidado mi contraseña</span>
 
-          <button class="button" @click="login" >Continuar</button>
+          <button class="button" @click="login">Continuar</button>
 
           <div>
             <p class="textblue">
-              ¿Aún no tienes una cuenta? <strong @click="singin" style="text-decoration: underline;">Registrate aquí</strong>
+              ¿Aún no tienes una cuenta?
+              <strong @click="singin" style="text-decoration: underline"
+                >Registrate aquí</strong
+              >
             </p>
           </div>
-
         </div>
       </div>
-
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
+/* eslint-disable */
 import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter, useRoute } from "vue-router";
 import { reactive } from "@vue/runtime-core";
@@ -72,11 +72,14 @@ const login = async () => {
   if (data.email == "" || data.password == "") {
     data.alert = true;
   } else {
-    const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/login`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-    });
+    const res = await fetch(
+      `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      }
+    );
 
     const da = await res.json();
 
@@ -95,7 +98,7 @@ const login = async () => {
       data.alert = false;
       if (data.type == "Person") {
         router.push("/tabs/home");
-      } else{
+      } else {
         router.push("/tabs/store/home");
       }
     }
@@ -105,7 +108,11 @@ const login = async () => {
 
 <style scoped lang="scss">
 .block1 {
-  --background: linear-gradient(0deg, var(--primary-linear2) 0%, var(--second-linear2) 100%);
+  --background: linear-gradient(
+    0deg,
+    var(--primary-linear2) 0%,
+    var(--second-linear2) 100%
+  );
 }
 .principal {
   display: flex;
@@ -118,7 +125,7 @@ const login = async () => {
   height: 30%;
   width: 40%;
 }
-.logoletter{
+.logoletter {
   height: 30%;
   width: 60%;
 }
@@ -153,8 +160,8 @@ const login = async () => {
   align-items: center;
   height: 45%;
 }
-.log{
-  border:none;
+.log {
+  border: none;
   padding: 10px;
   width: 100%;
   height: 100%;
@@ -168,7 +175,7 @@ const login = async () => {
 input:focus {
   border: 2px solid var(--violete-text);
   font-family: var(--main-font);
-  outline: none; 
+  outline: none;
 }
 .blank1 {
   width: 100%;
@@ -184,12 +191,12 @@ input:focus {
   justify-content: start;
   background-color: var(--gray-background);
 }
-.textblue{
+.textblue {
   font-size: 13px;
   color: var(--violete-text);
   font-family: var(--main-font);
 }
-.forgot{
+.forgot {
   text-align: end;
   text-decoration: underline;
 }

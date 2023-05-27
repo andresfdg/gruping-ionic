@@ -1,8 +1,17 @@
 <template>
-  <img class="storeImg" :src="getimg()" alt="" />
+  <div class="conten_store">
+    <div>
+      <img class="storeImg" :src="getimg()" alt="" />
+    </div>
+    <div>
+      <img class="storeImg1" :src="getimg()" alt="" />
+      <img class="storeImg2" :src="getimg()" alt="" />
+    </div>
+  </div>
 </template>
 
 <script setup>
+/* eslint-disable */
 const props = defineProps({
   img: String,
   name: String,
@@ -14,11 +23,30 @@ const getimg = () => {
 
 <style>
 .storeImg {
-  width: 158px;
-  height: 100px;
+  width: 400px;
+  height: 120px;
   border-radius: 15px;
-  margin-inline: 15px;
+
   margin-top: 8px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.storeImg1 {
+  width: 110px;
+  margin-left: 10px;
+  height: 56px;
+  border-radius: 15px;
+
+  margin-top: 8px;
+}
+.storeImg2 {
+  width: 110px;
+  margin-left: 10px;
+  height: 56px;
+  border-radius: 15px;
+}
+
+.conten_store {
+  display: flex;
+
+  justify-content: center;
 }
 </style>

@@ -1,25 +1,27 @@
 <template>
   <ion-page>
     <ion-content class="block1">
-        <!-- logo -->
-        <div class="logodiv">
-          <img src="../../../public/img/logoicon.svg" class="logoicon"/>
-          <img src="../../../public/img/logoletter.svg" class="logoletter"/>
-        </div>
-        <!-- principal image -->
-        <img src="../../../public/img/startpage.svg" class="mancha1"/>
-        <!-- action button -->
-        <div class="joint">
-          <span class="h1">¡Conoce el poder de las compras grupales!</span>
-          <span class="h2">Obten y crea ofertas para tus productos favoritos</span>
-          <button class="button" @click="TypeUser">Empecemos</button>
-        </div>
-
+      <!-- logo -->
+      <div class="logodiv">
+        <img src="../../../public/img/logoicon.svg" class="logoicon" />
+        <img src="../../../public/img/logoletter.svg" class="logoletter" />
+      </div>
+      <!-- principal image -->
+      <img src="../../../public/img/startpage.svg" class="mancha1" />
+      <!-- action button -->
+      <div class="joint">
+        <span class="h1">¡Conoce el poder de las compras grupales!</span>
+        <span class="h2"
+          >Obten y crea ofertas para tus productos favoritos</span
+        >
+        <button class="button" @click="TypeUser">Empecemos</button>
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
+/* eslint-disable */
 import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter } from "vue-router";
 
@@ -28,25 +30,28 @@ const router = useRouter();
 const TypeUser = () => {
   router.push("/typeuserpage");
 };
-
 </script>
 
 <style scoped lang="scss">
 .block1 {
-  --background: linear-gradient(0deg, var(--primary-linear) 0%, var(--second-linear) 100%);
+  --background: linear-gradient(
+    0deg,
+    var(--primary-linear) 0%,
+    var(--second-linear) 100%
+  );
 }
-.logodiv{
+.logodiv {
   padding-top: 10px;
   padding-left: 10px;
   align-items: start;
   position: relative;
   width: 100%;
 }
-.logoicon{
+.logoicon {
   position: absolute;
   z-index: 1;
 }
-.logoletter{
+.logoletter {
   position: absolute;
   z-index: 2;
   margin-left: 15px;

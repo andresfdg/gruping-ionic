@@ -5,147 +5,174 @@
         <ion-title>Grupping Logo</ion-title>
       </ion-toolbar>
     </ion-header>
-  <ion-content>
-    <div class="guield">
-      <div class="container">
-        <!--Imagen principal-->
-        <div class="product_header">
-          <span class="titleguield" style="margin-left: 25px;">{{ router.params.name }}</span>
-          <span style="margin-left: 30px;"> {{router.params.open ? 'Open':'Close'}}</span>
-          <img class="product_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPczWtSZ9ZwJtVbOGGdScNG6JFZd6vI2K5IXoIKCaB4RaYaUYIBefQ8N1VgE5Mil2fh4w&usqp=CAU"/>
-        </div>
-        <!--Filtros-->
-        <div class="d-flex">
-          <div v-for="i in data.types" :key="i">
-            <button class="btguild" @click="() => filter(i)">
-              <span v-if="i == 'True'">Act</span>
-              <span v-if="i == 'In process'">pro</span>
-              <span v-if="i == 'send'">send</span>
-              <span v-if="i == 'finished'">fini</span>
-              <span v-if="i == 'all'">all</span>
-            </button>
-          </div>
-        </div>
-        <!-- Boton de formulario para crear nuevo gremio-->
-        <div class="alin">
-          <div class="arrow">
-            <div>
-              <button class="btguildt" v-if="data.open" @click="() => activeformguild()" >
-                create new guild
-              </button>
-              <CreateGuildForm 
-                :guild_id=1
-                :item=1
-                :item_name="'jose'" 
-                :actual_pop=10
-                :category="'juego'"
-                :price=1
-                :open=true
-                :discount= "15"  
-                :life_time=10
-                :Max_pop=10 ></CreateGuildForm>
-            </div>
-          </div>
-        </div>
-        <!-- Boton de formulario para ingresar a un gremio existente -->
-        <div class="fit">
-          <form @submit.prevent="craete_order" class="formitem" v-if="data.form">
-            <span class="titlespan">How many items do you want?</span>
-            <input type="number" placeholder="quantity" v-model="data.quantity" />
-            <button class="b"><i class="bx bx-cart-add"></i></button>
-            <div>
-              <span class="spa">cost:</span>
-              {{ router.params.price * data.quantity }}
-            </div>
-            <div>
-              <span class="spa">discount: </span>
-              {{ data.discount }}%
-            </div>
-            <div>
-              <span class="spa">total: </span>
-              {{
-                router.params.price * data.quantity -
-                router.params.price * data.quantity * (data.discount / 100)
-              }}
-            </div>
-          </form>
-          <div class="cho-container"></div>
-        </div>
-
-        <div class="fit">
-          <form
-            @submit.prevent="craete_guild"
-            class="formitem"
-            v-if="data.formguild"
-          >
-            <select v-model="data.quantity_max">
-              <option :value="data.quantity_low">{{ data.quantity_low }}</option>
-              <option :value="data.quantity_medium">
-                {{ data.quantity_medium }}
-              </option>
-              <option :value="data.quantity_high">
-                {{ data.quantity_high }}
-              </option>
-            </select>
-
-            <input type="number" placeholder="quantity" v-model="data.quantity" />
-            <input
-              type="number"
-              placeholder="duration in days"
-              v-model="data.life_time"
-            />
-            <button class="btguild">create!</button>
-            {{ data.quantity_max }}
-          </form>
-        </div>
-
-        <div class="row">
-          <div
-            class="col"
-            v-for="i in data.guields"
-            :key="i"
-            @click="() => activeform(i)"
-          >
-            <div
-              class="guildca card col-3 m-5 justify-content-center"
-              v-if="i.active == data.filtertype || data.filtertype == 'all'"
+    <ion-content>
+      <div class="guield">
+        <div class="container">
+          <!--Imagen principal-->
+          <div class="product_header">
+            <span class="titleguield" style="margin-left: 25px">{{
+              router.params.name
+            }}</span>
+            <span style="margin-left: 30px">
+              {{ router.params.open ? "Open" : "Close" }}</span
             >
-              <div class="d-flex">
-                <div>
-                  <div class="solid">
-                    <span class="solidt">Id: </span> {{ i.id }}
+            <img
+              class="product_img"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPczWtSZ9ZwJtVbOGGdScNG6JFZd6vI2K5IXoIKCaB4RaYaUYIBefQ8N1VgE5Mil2fh4w&usqp=CAU"
+            />
+          </div>
+          <!--Filtros-->
+          <div class="d-flex">
+            <div v-for="i in data.types" :key="i">
+              <button class="btguild" @click="() => filter(i)">
+                <span v-if="i == 'True'">Act</span>
+                <span v-if="i == 'In process'">pro</span>
+                <span v-if="i == 'send'">send</span>
+                <span v-if="i == 'finished'">fini</span>
+                <span v-if="i == 'all'">all</span>
+              </button>
+            </div>
+          </div>
+          <!-- Boton de formulario para crear nuevo gremio-->
+          <div class="alin">
+            <div class="arrow">
+              <div>
+                <button
+                  class="btguildt"
+                  v-if="data.open"
+                  @click="() => activeformguild()"
+                >
+                  create new guild
+                </button>
+                <CreateGuildForm
+                  :guild_id="1"
+                  :item="1"
+                  :item_name="'jose'"
+                  :actual_pop="10"
+                  :category="'juego'"
+                  :price="1"
+                  :open="true"
+                  :discount="15"
+                  :life_time="10"
+                  :Max_pop="10"
+                ></CreateGuildForm>
+              </div>
+            </div>
+          </div>
+          <!-- Boton de formulario para ingresar a un gremio existente -->
+          <div class="fit">
+            <form
+              @submit.prevent="craete_order"
+              class="formitem"
+              v-if="data.form"
+            >
+              <span class="titlespan">How many items do you want?</span>
+              <input
+                type="number"
+                placeholder="quantity"
+                v-model="data.quantity"
+              />
+              <button class="b"><i class="bx bx-cart-add"></i></button>
+              <div>
+                <span class="spa">cost:</span>
+                {{ router.params.price * data.quantity }}
+              </div>
+              <div>
+                <span class="spa">discount: </span>
+                {{ data.discount }}%
+              </div>
+              <div>
+                <span class="spa">total: </span>
+                {{
+                  router.params.price * data.quantity -
+                  router.params.price * data.quantity * (data.discount / 100)
+                }}
+              </div>
+            </form>
+            <div class="cho-container"></div>
+          </div>
+
+          <div class="fit">
+            <form
+              @submit.prevent="craete_guild"
+              class="formitem"
+              v-if="data.formguild"
+            >
+              <select v-model="data.quantity_max">
+                <option :value="data.quantity_low">
+                  {{ data.quantity_low }}
+                </option>
+                <option :value="data.quantity_medium">
+                  {{ data.quantity_medium }}
+                </option>
+                <option :value="data.quantity_high">
+                  {{ data.quantity_high }}
+                </option>
+              </select>
+
+              <input
+                type="number"
+                placeholder="quantity"
+                v-model="data.quantity"
+              />
+              <input
+                type="number"
+                placeholder="duration in days"
+                v-model="data.life_time"
+              />
+              <button class="btguild">create!</button>
+              {{ data.quantity_max }}
+            </form>
+          </div>
+
+          <div class="row">
+            <div
+              class="col"
+              v-for="i in data.guields"
+              :key="i"
+              @click="() => activeform(i)"
+            >
+              <div
+                class="guildca card col-3 m-5 justify-content-center"
+                v-if="i.active == data.filtertype || data.filtertype == 'all'"
+              >
+                <div class="d-flex">
+                  <div>
+                    <div class="solid">
+                      <span class="solidt">Id: </span> {{ i.id }}
+                    </div>
+                    <div>Name: {{ router.params.name }}</div>
+                    <div class="solid">
+                      <span class="solidt">Actual_quantity: </span>
+                      {{ i.actual_quantity }}
+                    </div>
+                    <div>Discount: {{ i.discount }}</div>
+                    <div>Quantity_max: {{ i.quantity_max }}</div>
+                    <div>State: {{ i.active }}</div>
+                    <div>Counter: {{ i.active }}</div>
                   </div>
-                  <div>Name: {{ router.params.name }}</div>
-                  <div class="solid">
-                    <span class="solidt">Actual_quantity: </span>
-                    {{ i.actual_quantity }}
-                  </div>
-                  <div>Discount: {{ i.discount }}</div>
-                  <div>Quantity_max: {{ i.quantity_max }}</div>
-                  <div>State: {{ i.active }}</div>
-                  <div>Counter: {{ i.active }}</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </ion-content>
-</ion-page>
+    </ion-content>
+  </ion-page>
 </template>
-    
+
 <script setup>
+/* eslint-disable */
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import {
-IonPage,
-IonHeader,
-IonToolbar,
-IonTitle,
-IonContent,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
 } from "@ionic/vue";
 import CreateGuildForm from "../../components/CreateGuildForm.vue";
 import { onMounted, reactive, ref } from "vue";
@@ -177,8 +204,7 @@ const router = useRoute();
 //TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
 
-
-const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
+const mp = new MercadoPago("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
   locale: "es-CO",
 });
 
@@ -309,7 +335,6 @@ onMounted(() => {
 </script>
 
 <style>
-
 .guield {
   background-color: rgb(255, 255, 255);
 }
@@ -321,7 +346,7 @@ onMounted(() => {
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.product_header{
+.product_header {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -329,7 +354,7 @@ onMounted(() => {
   margin: 25px;
 }
 
-.product_img{
+.product_img {
   border-radius: 20px;
   width: 100%;
 }
@@ -444,7 +469,7 @@ onMounted(() => {
   color: black;
 }
 
-.d-flex{
+.d-flex {
   display: flex;
   flex-direction: row;
   justify-content: left;

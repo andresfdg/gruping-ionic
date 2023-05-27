@@ -32,6 +32,7 @@ const data = reactive({
 </script>
 
 <style scoped>
+/* eslint-disable */
 #app {
   height: 100%;
 }

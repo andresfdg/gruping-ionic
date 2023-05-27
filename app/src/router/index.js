@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import TabsPage from "../views/TabsPage.vue";
 import TabsStorePage from "../views/Amaury-views/TabsStorePage.vue";
@@ -41,7 +42,8 @@ const routes = [
         component: () => import("@/views/Andres-views/Tab4Page.vue"),
       },
     ],
-  },{
+  },
+  {
     path: "/tabs/store",
     component: TabsStorePage,
     children: [

@@ -9,40 +9,65 @@
       <div class="principal">
         <h1>Mis ordenes</h1>
 
-        <div class="cardbar"> 
-          <div :class="data.isselect1 ? 'sel' : 'option'" @click="filter">En curso</div> 
-          <span :class="data.isselect2 ? 'sel' : 'option'" @click="filter2">Espera</span> 
-          <span :class="data.isselect3 ? 'sel' : 'option'" @click="filter3">Todas</span> 
+        <div class="cardbar">
+          <div :class="data.isselect1 ? 'sel' : 'option'" @click="filter">
+            En curso
+          </div>
+          <span :class="data.isselect2 ? 'sel' : 'option'" @click="filter2"
+            >Espera</span
+          >
+          <span :class="data.isselect3 ? 'sel' : 'option'" @click="filter3"
+            >Todas</span
+          >
         </div>
 
-        <div class="ordenes"> 
+        <div class="ordenes">
           <div v-for="i in data.orders" :key="i">
-          <v-card class="orden_col" v-if="data.display==i.active || data.display=='todas'">
-            <div class="orden">
-              <span class="ordertitle">N° de orden {{i.id}}</span>
-              <span><strong>Producto/s: </strong>{{i.item}}</span>
-              <span><strong>Tienda: </strong>De pepito {{ i.store_id }}</span>
-              <span><strong>Grupo: </strong>SS Azul {{ i.guield_id }}</span>
-              <span><strong>Cantidad: </strong> {{ i.quantity }} </span>
-            </div>
-            <div class="orden_col2">
-              <button @click="() => completed(i)" v-if="i.active == 'send'">
-                received
-              </button>
-              <span v-if="i.active == 'True'"><span class="estate"><div class="gsap-box"></div>Recibida</span></span>
-              <span v-if="i.active == 'In process'"><span class="estate"><div class="gsap-box2"></div>Entregando</span></span>
-              <span v-if="i.active == 'finished'"><span class="estate"><div class="gsap-box3"></div>Terminada</span></span>
-              <span class="detalle"> <u>Ver Detalle</u> ></span>
-            </div>
-          </v-card>
-        </div>
+            <v-card
+              class="orden_col"
+              v-if="data.display == i.active || data.display == 'todas'"
+            >
+              <div class="orden">
+                <span class="ordertitle">N° de orden {{ i.id }}</span>
+                <span><strong>Producto/s: </strong>{{ i.item }}</span>
+                <span><strong>Tienda: </strong>De pepito {{ i.store_id }}</span>
+                <span><strong>Grupo: </strong>SS Azul {{ i.guield_id }}</span>
+                <span><strong>Cantidad: </strong> {{ i.quantity }} </span>
+              </div>
+              <div class="orden_col2">
+                <button @click="() => completed(i)" v-if="i.active == 'send'">
+                  received
+                </button>
+                <span v-if="i.active == 'True'"
+                  ><span class="estate"
+                    ><div class="gsap-box"></div>
+                    Recibida</span
+                  ></span
+                >
+                <span v-if="i.active == 'In process'"
+                  ><span class="estate"
+                    ><div class="gsap-box2"></div>
+                    Entregando</span
+                  ></span
+                >
+                <span v-if="i.active == 'finished'"
+                  ><span class="estate"
+                    ><div class="gsap-box3"></div>
+                    Terminada</span
+                  ></span
+                >
+                <span class="detalle"> <u>Ver Detalle</u> ></span>
+              </div>
+            </v-card>
+          </div>
         </div>
       </div>
     </ion-content>
   </ion-page>
 </template>
-  
-<script setup >
+
+<script setup>
+/* eslint-disable */
 import {
   IonPage,
   IonHeader,
@@ -54,40 +79,39 @@ import { card } from "ionicons/icons";
 import { onMounted, reactive, ref } from "vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 
-
 const data = reactive({
   orders: {},
-  isselect1:false,
-  isselect2:false,
-  isselect3:false,
-  display:"todas"
+  isselect1: false,
+  isselect2: false,
+  isselect3: false,
+  display: "todas",
 });
 
 const filter = () => {
-  data.isselect1 = !data.isselect1; 
+  data.isselect1 = !data.isselect1;
   data.isselect2 = false;
   data.isselect3 = false;
-  if (data.isselect1==true){
-    data.display="True"
-  }else{
-    data.display="todas"
-  };
+  if (data.isselect1 == true) {
+    data.display = "True";
+  } else {
+    data.display = "todas";
+  }
 };
 const filter2 = () => {
   data.isselect2 = !data.isselect2;
   data.isselect1 = false;
   data.isselect3 = false;
-  if (data.isselect2==true){
-    data.display="In process"
-  }else{
-    data.display="todas"
-  };
+  if (data.isselect2 == true) {
+    data.display = "In process";
+  } else {
+    data.display = "todas";
+  }
 };
 const filter3 = () => {
   data.isselect3 = !data.isselect3;
   data.isselect2 = false;
   data.isselect1 = false;
-  data.display="todas";
+  data.display = "todas";
 };
 
 const orders = () => {
@@ -118,28 +142,25 @@ const completed = async (i) => {
 onMounted(() => {
   orders();
 });
-
-  
 </script>
 
 <style scoped="true">
-
-ion-content{
-  --background: rgb(242,242,242);
+ion-content {
+  --background: rgb(242, 242, 242);
 }
 
-.principal{
+.principal {
   margin: 20px;
 }
 
-.cardbar{
+.cardbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-.option{
+.option {
   border: solid 2px rgb(94, 94, 94);
   display: flex;
   align-items: center;
@@ -153,7 +174,7 @@ ion-content{
   border-radius: 20px;
 }
 
-.sel{
+.sel {
   border: solid 2px rgb(165, 166, 246);
   background-color: rgb(206, 195, 252);
   display: flex;
@@ -168,13 +189,13 @@ ion-content{
   border-radius: 20px;
 }
 
-.ordenes{
+.ordenes {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.orden_col{
+.orden_col {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -190,21 +211,20 @@ ion-content{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.orden{
+.orden {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 5px;
   color: rgb(144, 144, 144);
-
 }
 
-.orden_col2{
+.orden_col2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.estate{
+.estate {
   align-self: flex-start;
   margin-left: 10px;
   margin-right: 15px;
@@ -222,7 +242,7 @@ ion-content{
   z-index: 2;
 }
 
-.detalle{
+.detalle {
   font-size: 17px;
   color: rgb(130, 0, 255);
   margin-bottom: 6px;
@@ -235,13 +255,11 @@ ion-content{
   font-weight: 1000;
 }
 
-h1{
+h1 {
   font-size: xx-large;
   font-weight: 1000;
   color: rgb(94, 94, 94);
-
 }
-
 
 .orders {
   background-color: rgb(222, 245, 237);
@@ -253,7 +271,7 @@ h1{
 }
 
 .gsap-box {
-  background: rgb(44,231,130);
+  background: rgb(44, 231, 130);
   margin-right: 5px;
   margin-top: 3px;
   width: 7px;
@@ -278,4 +296,3 @@ h1{
   border-radius: 50%;
 }
 </style>
-

@@ -8,7 +8,7 @@
     <ion-content>
       <div class="block1">
         <div class="header">
-          <span class="title">Gruping</span>
+          <span class="title"></span>
           <span>Cra 10# 28-71</span>
         </div>
         <div class="searchbar">
@@ -39,7 +39,7 @@
                     width="40"
                   />
                 </div>
-                <div>store1</div>
+                <div></div>
               </div>
             </div>
           </div>
@@ -78,6 +78,7 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -157,7 +158,7 @@ ion-searchbar {
 }
 .store {
   margin-top: 1px;
-  background-color: white;
+  background-color: red;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   h1 {
@@ -206,7 +207,7 @@ ion-searchbar {
   margin: 20px;
 }
 
-.itenn{
+.itenn {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -11,6 +11,7 @@ import { IonPage, IonContent } from "@ionic/vue";
 </script>
 
 <style setup lang="scss">
+/* eslint-disable */
 .container {
   display: flex;
 

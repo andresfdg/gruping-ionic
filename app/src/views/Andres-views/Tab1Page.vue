@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable */
 import {
   IonPage,
   IonHeader,

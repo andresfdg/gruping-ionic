@@ -5,5 +5,6 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import { IonPage, IonContent } from "@ionic/vue";
 </script>

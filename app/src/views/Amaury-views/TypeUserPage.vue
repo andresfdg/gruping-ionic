@@ -1,22 +1,25 @@
 <template>
-  <ion-page >
+  <ion-page>
     <ion-content class="block1">
       <!-- general div -->
       <div class="principal">
         <!-- logo -->
         <div class="logodiv">
-          <img src="../../../public/img/logoicon.svg" class="logoicon"/>
-          <img src="../../../public/img/logoletter.svg" class="logoletter"/>
+          <img src="../../../public/img/logoicon.svg" class="logoicon" />
+          <img src="../../../public/img/logoletter.svg" class="logoletter" />
         </div>
         <!-- principal image -->
-        <img src="../../../public/img/typeuser.png" class="mancha1"/>
+        <img src="../../../public/img/typeuser.png" class="mancha1" />
         <!-- gray container -->
         <div class="joint">
-
           <!-- user options -->
           <span class="h1">Elige tu tipo</span>
           <div class="second">
-            <div :class="data.store ? 'sel' : 'blank1'" id="1" @click="typestore">
+            <div
+              :class="data.store ? 'sel' : 'blank1'"
+              id="1"
+              @click="typestore"
+            >
               <img src="../../../public/img/storeuser.svg" class="ima" />
               <span>Tienda</span>
             </div>
@@ -27,34 +30,39 @@
           </div>
           <!-- action button -->
           <button class="button" @click="tab1">Continuar</button>
-          <p v-if = data.select class="textblue" style="color: blueviolet; margin: 5px;">Selecciona el tipo de usuario por favor</p>
+          <p
+            v-if="data.select"
+            class="textblue"
+            style="color: blueviolet; margin: 5px"
+          >
+            Selecciona el tipo de usuario por favor
+          </p>
         </div>
-
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
+/* eslint-disable */
 import { IonPage, IonContent } from "@ionic/vue";
 import { reactive } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 
-const data = reactive ({
+const data = reactive({
   typeuser: "",
   select: false,
   person: false,
-  store: false, 
-  open:false
+  store: false,
+  open: false,
 });
 
 const router = useRouter();
 
 const tab1 = () => {
-  if (data.typeuser!=""){
+  if (data.typeuser != "") {
     router.push(`/login/${data.typeuser}`);
-  } 
-  else{
+  } else {
     data.select = true;
   }
 };
@@ -72,12 +80,15 @@ const typeperson = () => {
   data.person = true;
   data.store = false;
 };
-
 </script>
 
 <style scoped lang="scss">
 .block1 {
-  --background: linear-gradient(0deg, var(--primary-linear2) 0%, var(--second-linear2) 100%);
+  --background: linear-gradient(
+    0deg,
+    var(--primary-linear2) 0%,
+    var(--second-linear2) 100%
+  );
 }
 .principal {
   display: flex;
@@ -88,18 +99,18 @@ const typeperson = () => {
   height: 90%;
   font-family: var(--main-font), sans-serif;
 }
-.logodiv{
+.logodiv {
   padding-top: 10px;
   padding-left: 10px;
   align-items: start;
   position: relative;
   width: 100%;
 }
-.logoicon{
+.logoicon {
   position: absolute;
   z-index: 1;
 }
-.logoletter{
+.logoletter {
   position: absolute;
   z-index: 2;
   margin-left: 15px;
@@ -162,7 +173,7 @@ const typeperson = () => {
   color: var(--gray-text);
   font-family: var(--main-font), sans-serif;
 }
-.sel{
+.sel {
   border: solid 1px var(--violete-text);
   margin-right: 10px;
   border-radius: 15px;
@@ -178,7 +189,7 @@ const typeperson = () => {
   color: var(--gray-text);
   font-family: var(--main-font), sans-serif;
 }
-.sel2{
+.sel2 {
   border: solid 1px var(--violete-text);
   margin-left: 10px;
   border-radius: 15px;
@@ -199,7 +210,7 @@ const typeperson = () => {
   width: 70%;
   font-family: var(--main-font), sans-serif;
 }
-.textblue{
+.textblue {
   font-size: 14px;
   color: var(--violete-text);
   font-family: var(--main-font);
@@ -238,5 +249,4 @@ const typeperson = () => {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
 </style>
