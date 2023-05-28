@@ -72,6 +72,7 @@ const login = async () => {
   if (data.email == "" || data.password == "") {
     data.alert = true;
   } else {
+<<<<<<< HEAD
     const res = await fetch(
       `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/login`,
       {
@@ -80,6 +81,13 @@ const login = async () => {
         headers: { "Content-type": "application/json; charset=UTF-8" },
       }
     );
+=======
+    const res = await fetch(`https://r55iwhvcu1.execute-api.sa-east-1.amazonaws.com/Prod/login`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    });
+>>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
 
     const da = await res.json();
 

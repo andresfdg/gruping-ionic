@@ -204,7 +204,12 @@ const router = useRoute();
 //TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
 
+<<<<<<< HEAD
 const mp = new MercadoPago("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
+=======
+
+const mp = new MercadoPago ("TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df", {
+>>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
   locale: "es-CO",
 });
 

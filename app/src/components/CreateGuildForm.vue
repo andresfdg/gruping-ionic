@@ -94,8 +94,15 @@
 </template>
 
 <script setup>
+<<<<<<< HEAD
 /* eslint-disable */
 import { IonModal, IonContent, modalController } from "@ionic/vue";
+=======
+import {
+  IonModal,
+  IonContent,
+} from "@ionic/vue";
+>>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
 
 import { reactive } from "vue";
 const data = reactive({
