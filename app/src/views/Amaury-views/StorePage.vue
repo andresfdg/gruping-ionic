@@ -89,7 +89,7 @@ const store = () => {
 const getitems = async () => {
   const id = router.params.id;
   console.log(id);
-  const res = await fetch(`http://127.0.0.1:8000/storeitems/${id}`, {
+  const res = await fetch(`https://r55iwhvcu1.execute-api.sa-east-1.amazonaws.com/Prod/storeitems/${id}`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -71,7 +71,6 @@
 import {
   IonModal,
   IonContent,
-  modalController,
 } from "@ionic/vue";
 
 import { reactive } from "vue";

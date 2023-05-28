@@ -178,7 +178,7 @@ const router = useRoute();
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
 
 
-const mp = new MercadoPago ("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
+const mp = new MercadoPago ("TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df", {
   locale: "es-CO",
 });
 

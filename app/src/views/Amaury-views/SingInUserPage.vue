@@ -41,7 +41,7 @@
             <span v-if="validations.exito && route.params.typeuser=='Store'" style="color: green;margin: 1px;">Usuario de tienda creado, Felicidades</span>
             
         
-            <button class="button" v-if="validations.aceptar && validations.cargando==false" @click="signupuser">Continuar</button>
+            <button class="button" v-if="validations.aceptar /* && validations.cargando==false */" @click="signupuser">Continuar</button>
             
             <div>
               <p class="textblue">
@@ -151,7 +151,6 @@ const signupuser = async () => {
       }, 5000);
 
       } else{
-        console.log(resp)
         validations.cargando = false
         validations.error4 = true
 
