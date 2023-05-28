@@ -127,23 +127,6 @@
             >Usuario de tienda creado, Felicidades</span
           >
 
-<<<<<<< HEAD
-          <button
-            class="button"
-            v-if="validations.aceptar && validations.cargando == false"
-            @click="signupuser"
-          >
-            Continuar
-          </button>
-
-          <div>
-            <p class="textblue">
-              ¿Ya tienes una cuenta?
-              <strong @click="login" style="text-decoration: underline"
-                >Ingresa aquí</strong
-              >
-            </p>
-=======
             <span v-if="validations.error1" style="color: blueviolet; margin: 1px;"> Las contraseñas no coinciden </span>
             <span v-if="validations.error2" style="color: blueviolet;margin: 1px;"> Digite un correo valído</span>
             <span v-if="validations.error3" style="color: blueviolet;margin: 1px;">La contraseña debe tener al menos 8 caracteres</span>
@@ -161,10 +144,8 @@
               </p>
             </div>
             
->>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
           </div>
         </div>
-      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -207,11 +188,6 @@ const validations = reactive({
   cargando: false,
 });
 /*  */
-<<<<<<< HEAD
-const terminos = () => {
-  validations.aceptar = !validations.aceptar;
-  console.log(route.params.typeuser);
-=======
 const terminos = () =>{
   validations.aceptar = !validations.aceptar
   console.log(route.params.typeuser)
@@ -323,126 +299,8 @@ const signupuser = async () => {
   } catch(err){
     console.log(err)
   }
->>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
 };
 
-const signupuser = async () => {
-  const expReg =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-  const expReg2 = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z a-z]{2,}$/;
-
-  let error2 = expReg.test(data.email);
-
-  if (error2 == false) {
-    error2 = expReg2.test(data.email);
-  }
-
-  try {
-    if (data.password != data.password2) {
-      validations.error1 = true;
-      validations.error2 = false;
-      validations.error3 = false;
-    } else if (error2 != true) {
-      validations.error2 = true;
-      validations.error3 = false;
-      validations.error1 = false;
-    } else if (data.password.length < 8) {
-      validations.error3 = true;
-      validations.error2 = false;
-      validations.error1 = false;
-    } else {
-      validations.error1 = false;
-      validations.error2 = false;
-      validations.error3 = false;
-      validations.cargando = true;
-
-      if (route.params.typeuser.toString() == "Person") {
-        const res = await fetch(
-          `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/user/create`,
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-type": "application/json; charset=UTF-8" },
-          }
-        );
-
-        const resp = await res.json();
-
-        if (
-          resp !==
-          "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"
-        ) {
-          validations.exito = true;
-          validations.cargando = false;
-          validations.error1 = false;
-          validations.error2 = false;
-          validations.error3 = false;
-          validations.error4 = false;
-          console.log(resp);
-          setTimeout(() => {
-            validations.exito = false;
-            router.push("/login/Person");
-          }, 5000);
-        } else {
-          console.log(resp);
-          validations.cargando = false;
-          validations.error4 = true;
-
-          setTimeout(() => {
-            validations.exito = false;
-            validations.cargando = false;
-            validations.error1 = false;
-            validations.error2 = false;
-            validations.error3 = false;
-            validations.error4 = false;
-          }, 5000);
-        }
-      } else {
-        const res = await fetch(
-          `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeuser/create`,
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-type": "application/json; charset=UTF-8" },
-          }
-        );
-
-        const resp = await res.json();
-
-        if (
-          resp !==
-          "Este_usuario_ya_esta_registrado-code:4556787651983640386377635"
-        ) {
-          validations.exito = true;
-          validations.cargando = false;
-          validations.error1 = false;
-          validations.error2 = false;
-          validations.error3 = false;
-          validations.error4 = false;
-          console.log(resp);
-          setTimeout(() => {
-            validations.exito = false;
-            router.push("/login/Store");
-          }, 5000);
-        } else {
-          console.log(resp);
-          validations.cargando = false;
-          validations.error4 = true;
-          setTimeout(() => {
-            validations.exito = false;
-            validations.cargando = false;
-            validations.error1 = false;
-            validations.error2 = false;
-            validations.error3 = false;
-            validations.error4 = false;
-          }, 5000);
-        }
-      }
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
 </script>
 
 <style scoped lang="scss">
