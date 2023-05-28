@@ -8,7 +8,7 @@
     <ion-content>
       <div class="block1">
         <div class="header">
-          <span class="title"></span>
+          <span class="title">Gruping</span>
           <span>Cra 10# 28-71</span>
         </div>
         <div class="searchbar">
@@ -39,7 +39,7 @@
                     width="40"
                   />
                 </div>
-                <div></div>
+                <div>store1</div>
               </div>
             </div>
           </div>

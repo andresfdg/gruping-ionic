@@ -22,54 +22,30 @@
               ></ion-icon>
             </div>
           </div>
-        </ion-content >
-      </ion-modal>
-    </div>
-  </template>
-  
+        </div>
+      </ion-content>
+    </ion-modal>
+  </div>
+</template>
+
 <script setup>
-import {
-  IonModal,
-  IonContent,
-  modalController,
-} from "@ionic/vue";
+import { IonModal, IonContent, modalController } from "@ionic/vue";
 
 const props = defineProps({
   guild_id: Number,
   item: Number,
-<<<<<<< HEAD
   item_name: String,
-=======
-  item_name: String, 
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   actual_pop: Number,
   category: String,
   price: Number,
   open: Boolean,
-<<<<<<< HEAD
   discount: String,
   life_time: Number,
   Max_pop: Number,
 });
-
-const dismiss = () => {
-  /* document.querySelector("ion-modal").dismiss(); */
-  modalController.dismiss();
-};
 </script>
 
 <style scoped>
-=======
-  discount: String, 
-  life_time: Number,
-  Max_pop: Number, 
-});
-  
-</script>
-  
-<style scoped>
-
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
 ion-modal {
   --height: 50%;
   --border-radius: 16px;
@@ -83,7 +59,6 @@ ion-modal::part(backdrop) {
   opacity: 1;
 }
 
-<<<<<<< HEAD
 ion-content {
   --background: rgb(242, 242, 242);
 }
@@ -99,28 +74,10 @@ ion-content {
   display: flex;
   flex-direction: row;
   align-items: left;
-=======
-ion-content{
-  --background: rgb(242, 242, 242);
-}
-.container{
-  padding-top: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
-  display: flex; 
-  flex-direction: column;
-  background-color: rgb(242, 242, 242);
-}
-.product_name{
-  display: flex;
-  flex-direction: row;
-  align-items:left;
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(242, 242, 242);
   color: rgb(94, 94, 94);
   font-weight: bolder;
 }
-<<<<<<< HEAD
 .actual_people {
   display: flex;
   flex-direction: row;
@@ -129,26 +86,12 @@ ion-content{
   color: rgb(130, 0, 255);
 }
 .guild_conditions {
-=======
-.actual_people{
-  display: flex;
-  flex-direction: row;
-  align-items:start;
-  margin-top: 10px;
-  color: rgb(130,0,255);
-}
-.guild_conditions{
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(242, 242, 242);
 }
-<<<<<<< HEAD
 .condition_pop {
-=======
-.condition_pop{
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 70px;
@@ -160,14 +103,8 @@ ion-content{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
 }
 .condition_discount {
-=======
-
-}
-.condition_discount{
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 100px;
@@ -179,14 +116,8 @@ ion-content{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
 }
 .condition_time {
-=======
-
-}
-.condition_time{
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   background-color: rgb(217, 217, 217);
   border-radius: 50%;
   width: 70px;
@@ -200,11 +131,7 @@ ion-content{
   justify-content: center;
 }
 
-<<<<<<< HEAD
 .buy_options {
-=======
-.buy_options{
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -227,10 +154,6 @@ input:focus {
   border: 1px solid rgb(104, 255, 174);
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
 .button {
   margin-right: 40px;
   margin-left: 40px;
@@ -256,10 +179,4 @@ input:focus {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-<<<<<<< HEAD
 </style>
-=======
-
-</style>
-    
->>>>>>> 3264113523d1171bf465122faa0e50303eef16a5
