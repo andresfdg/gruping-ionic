@@ -216,7 +216,7 @@ const data = reactive({
 });
 
 const getinfouser = async () => {
-  const res = await fetch("http://127.0.0.1:8000/infouser", {
+  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -229,7 +229,7 @@ const getinfouser = async () => {
 };
 
 const stores = async () => {
-  fetch("http://127.0.0.1:8000/allstore")
+  fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore")
     .then((res) => res.json())
     .then((da) => (data.stores = da));
 };

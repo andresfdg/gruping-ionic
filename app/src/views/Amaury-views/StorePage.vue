@@ -57,7 +57,7 @@ const data = reactive({
 });
 
 const getinfouser = async () => {
-  const res = await fetch("http://127.0.0.1:8000/infouser", {
+  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -72,7 +72,7 @@ const store = () => {
   const id = router.params.id;
   console.log(id);
 
-  fetch(`http://127.0.0.1:8000/allstore/${id}`, {
+  fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore/${id}`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -86,7 +86,7 @@ const getitems = async () => {
   const id = router.params.id;
   console.log(id);
   const res = await fetch(
-    `https://r55iwhvcu1.execute-api.sa-east-1.amazonaws.com/Prod/storeitems/${id}`,
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeitems/${id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",

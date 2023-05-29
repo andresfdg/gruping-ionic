@@ -88,6 +88,7 @@
                   router.params.price * data.quantity * (data.discount / 100)
                 }}
               </div>
+              <buttom @click="craete_order" style="height: 50px; width: 50px; background-color: white">inter</buttom>
             </form>
             <div class="cho-container"></div>
           </div>
@@ -309,7 +310,7 @@ const craete_guild = async () => {
 };
 
 const get_item = async () => {
-  const res = await fetch(`http://127.0.0.1:8000/item/${router.params.id}`, {
+  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/item/${router.params.id}`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

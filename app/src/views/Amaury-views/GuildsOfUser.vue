@@ -53,7 +53,7 @@ const data = reactive({
 });
 
 const getgields = async () => {
-  const res = await fetch("http://127.0.0.1:8000/storeorder", {
+  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeorder", {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -75,9 +75,7 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
-import { card } from "ionicons/icons";
 import { onMounted, reactive, ref } from "vue";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 
 const data = reactive({
   orders: {},
@@ -115,7 +113,7 @@ const filter3 = () => {
 };
 
 const orders = () => {
-  fetch(`http://127.0.0.1:8000/userorders`, {
+  fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/userorders`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -128,7 +126,7 @@ const orders = () => {
 const completed = async (i) => {
   const ids = i.id;
   console.log(i.id);
-  const res = await fetch(`http://127.0.0.1:8000/completed/${ids}`, {
+  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/completed/${ids}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
