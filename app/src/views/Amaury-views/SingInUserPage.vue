@@ -282,7 +282,6 @@ const signupuser = async () => {
             router.push("/login/Person");
           }, 5000);
         } else {
-          console.log(resp);
           validations.cargando = false;
           validations.error4 = true;
 

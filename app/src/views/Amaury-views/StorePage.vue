@@ -5,34 +5,27 @@
         <ion-title>Grupping Logo</ion-title>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
       <div class="block1">
-        <div class="header">
-          <span class="title"> {{ data.store.name }} </span>
-          <span>Cra 10# 28-71</span>
-        </div>
-        <div class="searchbar">
-          <ion-searchbar
-            :animated="true"
-            placeholder="busqueda"
-          ></ion-searchbar>
-        </div>
-        <div class="swiper">
-          <div class="store">Tiendas</div>
-        </div>
+        <span class="title"> {{ data.store.name }} </span>
+        <span>Cra 10# 28-71</span>
       </div>
-      <div v-for="i in data.items" :key="i" class="items">
-        <ItemCardUserVue
-          :name="i.name"
-          :category="i.category"
-          :price="i.price"
-          :open="i.open"
-          :id="i.id"
-          :storeid="router.params.id"
-          :likes="i.likes"
-          @funt="items"
-          @funt2="xx"
-        ></ItemCardUserVue>
+
+      <div class="store">
+        <div v-for="i in data.items" :key="i" class="items">
+          <ItemCardUserVue
+            :name="i.name"
+            :category="i.category"
+            :price="i.price"
+            :open="i.open"
+            :id="i.id"
+            :storeid="router.params.id"
+            :likes="i.likes"
+            @funt="items"
+            @funt2="xx"
+          ></ItemCardUserVue>
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -92,12 +85,15 @@ const store = () => {
 const getitems = async () => {
   const id = router.params.id;
   console.log(id);
-  const res = await fetch(`https://r55iwhvcu1.execute-api.sa-east-1.amazonaws.com/Prod/storeitems/${id}`, {
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    `https://r55iwhvcu1.execute-api.sa-east-1.amazonaws.com/Prod/storeitems/${id}`,
+    {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   const da = await res.json();
   data.items = da;
   console.log("holis");
@@ -136,12 +132,16 @@ ion-searchbar {
 
 .block1 {
   background-color: rgb(210, 203, 251);
+  height: 223px;
 }
 .store {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-top: 1px;
-  background-color: white;
+  background-color: #f5f5f5;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+
   h1 {
     padding: 15px;
     margin-left: 10px;
@@ -213,8 +213,11 @@ ion-searchbar {
 
 .items {
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
-  align-items: center;
+}
+
+ion-content {
+  --background: #f5f5f5;
 }
 </style>

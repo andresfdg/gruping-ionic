@@ -204,18 +204,13 @@ const router = useRoute();
 //TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df
 //APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5
 
-<<<<<<< HEAD
 const mp = new MercadoPago("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
-=======
-
-const mp = new MercadoPago ("TEST-21bbff78-2020-4a48-bbf2-e7357a59b1df", {
->>>>>>> 1a9c68bdc02de603f69a10eef338787cf332670d
   locale: "es-CO",
 });
 
 const getguields = async () => {
   const id = router.params.id;
-  const res = await fetch(`http://127.0.0.1:8000/guielditem/${id}`, {
+  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/guielditem/${id}`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -259,7 +254,7 @@ const craete_order = async () => {
     quantity: Number(data.quantity),
   };
 
-  const res1 = await fetch(`http://127.0.0.1:8000/generate_payment`, {
+  const res1 = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment`, {
     method: "POST",
     body: JSON.stringify(payload1),
     headers: {
@@ -291,7 +286,7 @@ const craete_guild = async () => {
     life_time: Number(data.life_time),
   };
 
-  const res = await fetch(`http://127.0.0.1:8000/generate_payment_creation`, {
+  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment_creation`, {
     method: "POST",
     body: JSON.stringify(payload),
     headers: {

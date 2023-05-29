@@ -23,17 +23,6 @@
         </div>
       </router-link>
     </div>
-    <div class="row">
-      <div class="container"></div>
-      <button @click="post_like" class="col-3 btn">
-        <i v-if="data.span" class="bx bxs-heart"></i>
-        <i v-if="!data.span" class="bx bx-heart"></i>{{ likes }}
-      </button>
-      <img class="col-6 border" src="../../public/img/log.jpeg" />
-      <button class="col-3 btn">
-        <i class="bx bxs-star"></i>
-      </button>
-    </div>
   </div>
 </template>
 
@@ -104,7 +93,8 @@ onMounted(() => {
   box-shadow: rgba(49, 255, 221, 0.25) 0px 6px 12px -2px,
     rgba(28, 205, 190, 0.508) 0px 3px 7px -3px;
   border-radius: 20px;
-  width: 100px;
+  width: 146px;
+  height: 112px;
   color: black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
