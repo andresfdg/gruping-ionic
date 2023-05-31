@@ -53,9 +53,10 @@ import { useRouter, useRoute } from "vue-router";
 import { reactive } from "@vue/runtime-core";
 import { useStore } from "../../stores/store";
 
+
+const store = useStore();
 const router = useRouter();
 const route = useRoute();
-const store = useStore();
 
 const data = reactive({
   alert: false,
@@ -73,7 +74,7 @@ const login = async () => {
     data.alert = true;
   } else {
     const res = await fetch(
-      `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/login`,
+      `${store.server}/login`,
       {
         method: "POST",
         body: JSON.stringify(data),

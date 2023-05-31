@@ -75,7 +75,11 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive } from "vue";
+import { useStore } from "../../stores/store";
+
+
+const store = useStore();
 
 const data = reactive({
   orders: {},
@@ -113,7 +117,7 @@ const filter3 = () => {
 };
 
 const orders = () => {
-  fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/userorders`, {
+  fetch(`${store.server}/userorders`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -126,7 +130,7 @@ const orders = () => {
 const completed = async (i) => {
   const ids = i.id;
   console.log(i.id);
-  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/completed/${ids}`, {
+  const res = await fetch(`${store.server}/completed/${ids}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json; charset=UTF-8",

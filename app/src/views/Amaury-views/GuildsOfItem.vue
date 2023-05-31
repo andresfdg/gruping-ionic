@@ -226,6 +226,10 @@ import {
 import CreateGuildForm from "../../components/CreateGuildForm.vue";
 import { onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "../../stores/store";
+
+
+const store = useStore();
 
 const data = reactive({
   guields: [],
@@ -260,7 +264,7 @@ const mp = new MercadoPago("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
 const getguields = async () => {
   const id = router.params.id;
   const res = await fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/guielditem/${id}`,
+    `${store.server}/guielditem/${id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -307,7 +311,7 @@ const craete_order = async () => {
   };
 
   const res1 = await fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment`,
+    `${store.server}/generate_payment`,
     {
       method: "POST",
       body: JSON.stringify(payload1),
@@ -342,7 +346,7 @@ const craete_guild = async () => {
   };
 
   const res = await fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment_creation`,
+    `${store.server}/generate_payment_creation`,
     {
       method: "POST",
       body: JSON.stringify(payload),
@@ -368,7 +372,7 @@ const craete_guild = async () => {
 
 const get_item = async () => {
   const res = await fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/item/${router.params.id}`,
+    `${store.server}/item/${router.params.id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",

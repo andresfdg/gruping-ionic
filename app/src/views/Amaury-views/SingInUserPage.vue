@@ -188,7 +188,10 @@ import { IonPage, IonContent, IonToggle, IonLabel, IonItem } from "@ionic/vue";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
 import TC from "../../components/CompoT&C.vue";
+import { useStore } from "../../stores/store";
 
+
+const store = useStore();
 const router = useRouter();
 const route = useRoute();
 
@@ -256,7 +259,7 @@ const signupuser = async () => {
 
       if (route.params.typeuser.toString() == "Person") {
         const res = await fetch(
-          `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/user/create`,
+          `${store.server}/user/create`,
           {
             method: "POST",
             body: JSON.stringify(data),
@@ -296,7 +299,7 @@ const signupuser = async () => {
         }
       } else {
         const res = await fetch(
-          `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeuser/create`,
+          `${store.server}/storeuser/create`,
           {
             method: "POST",
             body: JSON.stringify(data),

@@ -105,6 +105,9 @@
 import { reactive } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import { ref } from "vue";
+import { useStore } from "../../stores/store";
+
+const store = useStore();
 
 const img = ref("");
 
@@ -140,7 +143,7 @@ const addStores = async () => {
   const formData = new FormData();
   formData.append("file", img.value.files[0], ada.name);
 
-  const res = await fetch(`http://127.0.0.1:8000/store/create`, {
+  const res = await fetch(`${store.server}/store/create`, {
     method: "POST",
     body: formData,
     headers: {
@@ -150,7 +153,7 @@ const addStores = async () => {
 };
 
 const addItem = async () => {
-  const res = await fetch(`http://127.0.0.1:8000/item/create`, {
+  const res = await fetch(`${store.server}/item/create`, {
     method: "POST",
     body: JSON.stringify(item),
     headers: {
@@ -176,7 +179,7 @@ const addItem = async () => {
 };
 
 const infostore = async () => {
-  const res = await fetch("http://127.0.0.1:8000/onestore", {
+  const res = await fetch(`${store.server}/onestore`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -189,7 +192,7 @@ const infostore = async () => {
 };
 
 const infoitem = () => {
-  fetch("http://127.0.0.1:8000/items", {
+  fetch(`${store.server}/items`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -46,6 +46,9 @@ import {
 } from "@ionic/vue";
 import { onMounted, reactive } from "vue";
 import UserGuildsCard from "../../components/UserGuildsCard.vue";
+import { useStore } from "../../stores/store";
+
+const store = useStore();
 
 const data = reactive({
   gields: [],
@@ -53,7 +56,7 @@ const data = reactive({
 });
 
 const getgields = async () => {
-  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeorder", {
+  const res = await fetch(`${store.server}/storeorder`, {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem("token")}`,

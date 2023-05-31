@@ -57,19 +57,20 @@
 
 <script setup>
 /* eslint-disable */
-
 import {
   IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  IonSearchbar,
 } from "@ionic/vue";
 import { onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import ItemCardUserVue from "../../components/ItemCardUser.vue";
+import { useStore } from "../../stores/store";
 
+
+const stores = useStore();
 const router = useRoute();
 
 const data = reactive({
@@ -83,7 +84,7 @@ const data = reactive({
 
 const getinfouser = async () => {
   const res = await fetch(
-    "https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser",
+    `${stores.server}/infouser`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -101,7 +102,7 @@ const store = () => {
   console.log(id);
 
   fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore/${id}`,
+    `${stores.server}/allstore/${id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -117,7 +118,7 @@ const getitems = async () => {
   const id = router.params.id;
   console.log(id);
   const res = await fetch(
-    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/storeitems/${id}`,
+    `${stores.server}/storeitems/${id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
