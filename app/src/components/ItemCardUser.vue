@@ -1,28 +1,18 @@
 <template>
-  <div class="montans card mt-3">
-    <p class="title p-1 m-1">{{ name }}</p>
-    <div class="x border">
-      <router-link
-        :to="`/guielditem/${storeid}/${id}/${name}/${price}/${open}`"
-        style="text-decoration: none; color: inherit"
-      >
-        <div class="s container">
-          <div><span class="spa">category: </span> {{ category }}</div>
-          <div><span class="spa">price:</span> {{ price }}</div>
+  <div>
+    <img
+      src="https://wallpapercave.com/wp/wp5431761.jpg"
+      alt=""
+      width="146"
+      style="border-radius: 8px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+    />
 
-          <button
-            class="openbutton"
-            :style="
-              open == true
-                ? 'background-color: #4efc03;color:green'
-                : 'background-color: #fc3f3f;color:#8f2121'
-            "
-          >
-            open: {{ open }}
-          </button>
-        </div>
-      </router-link>
-    </div>
+    <router-link
+      :to="`/guielditem/${storeid}/${id}/${name}/${price}/${open}`"
+      style="text-decoration: none; color: inherit"
+    >
+      <div class="routerButton"><span>Ver producto</span></div>
+    </router-link>
   </div>
 </template>
 
@@ -82,22 +72,14 @@ const likess = async () => {
   console.log(da);
 };
 
-onMounted(() => {
-  likess();
-});
+onMounted(() => {});
 </script>
 
-<style>
+<style scoped lang="scss">
 .montans {
   font-family: sans-serif;
-  box-shadow: rgba(49, 255, 221, 0.25) 0px 6px 12px -2px,
-    rgba(28, 205, 190, 0.508) 0px 3px 7px -3px;
-  border-radius: 20px;
-  width: 146px;
-  height: 112px;
+
   color: black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .montans:hover {
@@ -112,5 +94,23 @@ onMounted(() => {
 .x {
   font-size: 12px;
   font-weight: bold;
+}
+
+.routerButton {
+  margin-top: 6px;
+  background-color: #6affaf;
+  width: 146px;
+  height: 18px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  span {
+    font-size: 10px;
+    color: #5e5e5e;
+    font-weight: 600;
+  }
 }
 </style>

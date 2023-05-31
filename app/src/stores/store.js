@@ -6,6 +6,8 @@ export const useStore = defineStore("store", {
   state: () => {
     return {
       auth: localStorage.getItem("type"),
+
+      tiendas: "",
     };
   },
 

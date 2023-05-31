@@ -7,24 +7,48 @@
     </ion-header>
 
     <ion-content>
-      <div class="block1">
-        <span class="title"> {{ data.store.name }} </span>
-        <span>Cra 10# 28-71</span>
-      </div>
+      <div class="block1"></div>
+      <div style="display: flex; flex-direction: column; margin-top: 17px">
+        <div>
+          <span class="nombreTienda">Adidas</span>
+        </div>
 
-      <div class="store">
-        <div v-for="i in data.items" :key="i" class="items">
-          <ItemCardUserVue
-            :name="i.name"
-            :category="i.category"
-            :price="i.price"
-            :open="i.open"
-            :id="i.id"
-            :storeid="router.params.id"
-            :likes="i.likes"
-            @funt="items"
-            @funt2="xx"
-          ></ItemCardUserVue>
+        <div class="desTiendaTitulo">
+          <span>Descripcion</span>
+        </div>
+
+        <div class="desTienda">
+          <span
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
+            atque quaerat tempore voluptates perferendis quod vitae qui
+            dignissimos! Quam quo repudiandae expedita aliquid quae, minima
+            voluptatem nulla? Incidunt, sequi eveniet.</span
+          >
+        </div>
+        <div>
+          <div class="searchPromo"></div>
+        </div>
+
+        <span class="titulo">Productos</span>
+        <div class="store">
+          <div
+            v-for="i in data.items"
+            :key="i"
+            class="items"
+            style="margin-top: 17px"
+          >
+            <ItemCardUserVue
+              :name="i.name"
+              :category="i.category"
+              :price="i.price"
+              :open="i.open"
+              :id="i.id"
+              :storeid="router.params.id"
+              :likes="i.likes"
+              @funt="items"
+              @funt2="xx"
+            ></ItemCardUserVue>
+          </div>
         </div>
       </div>
     </ion-content>
@@ -33,6 +57,7 @@
 
 <script setup>
 /* eslint-disable */
+
 import {
   IonPage,
   IonHeader,
@@ -57,11 +82,14 @@ const data = reactive({
 });
 
 const getinfouser = async () => {
-  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser", {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    "https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser",
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
 
   const da = await res.json();
   console.log(da);
@@ -72,14 +100,17 @@ const store = () => {
   const id = router.params.id;
   console.log(id);
 
-  fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore/${id}`, {
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  })
+  fetch(
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore/${id}`,
+    {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  )
     .then((res) => res.json())
-    .then((da) => (data.store = da));
+    .then((da) => console.log(da));
 };
 
 const getitems = async () => {
@@ -110,24 +141,55 @@ const getitems = async () => {
 };
 
 onMounted(() => {
+  store();
   getinfouser();
   getitems();
 });
 </script>
 
 <style scoped lang="scss">
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin: 12px;
-  margin-top: 1px;
-}
 ion-searchbar {
   --background: snow;
   --border-radius: 25px;
 }
-.searchbar {
-  margin-inline: 75px;
+
+.nombreTienda {
+  font-size: 24px;
+  color: #5e5e5e;
+  margin-left: 32px;
+  font-weight: bold;
+}
+.desTiendaTitulo {
+  color: #666666;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 32px;
+  margin-top: 17px;
+}
+
+.desTienda {
+  color: #888888;
+  font-size: 12px;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-top: 8px;
+}
+
+.searchPromo {
+  box-shadow: 0px 3px 15px 2px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  height: 30px;
+  margin-left: 46px;
+  margin-top: 37px;
+  border-radius: 15px;
+}
+
+.titulo {
+  margin-top: 21px;
+  color: #5e5e5e;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 32px;
 }
 
 .block1 {
@@ -151,64 +213,10 @@ ion-searchbar {
     color: rgb(93, 93, 93);
   }
 }
-.filters {
-  display: flex;
-  box-shadow: rgba(38, 38, 43, 0.2) 0px 7px 29px 0px;
-  margin-right: 25px;
-  margin-left: 25px;
-  padding: 25px;
-  border-radius: 15px;
-  justify-content: space-between;
-  font-size: 14px;
-  font-family: sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
 
-.categories {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .title {
   font-weight: 800;
   font-size: 20px;
-}
-.spas {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-top: 15px;
-  margin-right: 15px;
-  margin-left: 15px;
-}
-.box {
-  background-color: aqua;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: scroll;
-  margin-top: 300px;
-}
-.boxi {
-  --background: red;
-  margin: 20px;
-}
-
-.itenn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tienda {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  height: 200px;
-  border: solid 2px black;
 }
 
 .items {

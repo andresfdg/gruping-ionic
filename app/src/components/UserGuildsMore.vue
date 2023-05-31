@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { IonModal, IonContent, modalController } from "@ionic/vue";
+import { IonModal, IonContent } from "@ionic/vue";
 
 const props = defineProps({
   guild_id: Number,

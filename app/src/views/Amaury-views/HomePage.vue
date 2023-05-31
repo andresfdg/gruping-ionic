@@ -125,7 +125,7 @@
             >
           </div>
           <ion-list style="background-color: #f5f5f5">
-            <div v-for="i in data.stores" :key="i">
+            <div v-for="i in globalStore.tiendas" :key="i">
               <router-link
                 style="text-decoration: none; color: inherit"
                 :to="`store/${i.id}`"
@@ -179,6 +179,7 @@
 
 <script setup>
 /* eslint-disable */
+import { useStore } from "../../stores/store";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -215,12 +216,17 @@ const data = reactive({
   stores: {},
 });
 
+const globalStore = useStore();
+
 const getinfouser = async () => {
-  const res = await fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser", {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    "https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/infouser",
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
 
   const da = await res.json();
   console.log(da);
@@ -229,9 +235,11 @@ const getinfouser = async () => {
 };
 
 const stores = async () => {
-  fetch("https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore")
+  fetch(
+    "https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/allstore"
+  )
     .then((res) => res.json())
-    .then((da) => (data.stores = da));
+    .then((da) => (globalStore.tiendas = da));
 };
 
 const items = reactive([]);

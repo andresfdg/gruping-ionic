@@ -9,20 +9,55 @@
       <div class="guield">
         <div class="container">
           <!--Imagen principal-->
-          <div class="product_header">
-            <span class="titleguield" style="margin-left: 25px">{{
-              router.params.name
-            }}</span>
-            <span style="margin-left: 30px">
-              {{ router.params.open ? "Open" : "Close" }}</span
+          <div>
+            <div style="margin-top: 43px">
+              <span class="titleguield" style="margin-left: 25px">{{
+                router.params.name
+              }}</span>
+            </div>
+            <div style="margin-top: 7px">
+              <span style="margin-left: 30px; color: #666666">
+                {{ router.params.open ? "Open" : "Close" }}</span
+              >
+            </div>
+            <div
+              style="padding-left: 16px; padding-right: 16px; margin-top: 8px"
             >
-            <img
-              class="product_img"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPczWtSZ9ZwJtVbOGGdScNG6JFZd6vI2K5IXoIKCaB4RaYaUYIBefQ8N1VgE5Mil2fh4w&usqp=CAU"
-            />
+              <img
+                class="product_img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPczWtSZ9ZwJtVbOGGdScNG6JFZd6vI2K5IXoIKCaB4RaYaUYIBefQ8N1VgE5Mil2fh4w&usqp=CAU"
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                padding-left: 16px;
+                padding-right: 16px;
+                margin-top: 25px;
+              "
+            >
+              <span style="font-size: 14px; color: #666666">Descripcion</span>
+              <span style="font-size: 16px; color: #666666; font-weight: bold"
+                >$250.000</span
+              >
+            </div>
+            <div
+              style="
+                padding-left: 16px;
+                padding-right: 16px;
+                margin-top: 25px;
+                color: #5e5e5e;
+                font-size: 20px;
+                font-weight: bold;
+              "
+            >
+              <span>Grupos</span>
+            </div>
           </div>
           <!--Filtros-->
-          <div class="d-flex">
+          <!--     <div class="d-flex">
             <div v-for="i in data.types" :key="i">
               <button class="btguild" @click="() => filter(i)">
                 <span v-if="i == 'True'">Act</span>
@@ -32,7 +67,7 @@
                 <span v-if="i == 'all'">all</span>
               </button>
             </div>
-          </div>
+          </div> -->
           <!-- Boton de formulario para crear nuevo gremio-->
           <div class="alin">
             <div class="arrow">
@@ -88,7 +123,11 @@
                   router.params.price * data.quantity * (data.discount / 100)
                 }}
               </div>
-              <buttom @click="craete_order" style="height: 50px; width: 50px; background-color: white">inter</buttom>
+              <buttom
+                @click="craete_order"
+                style="height: 50px; width: 50px; background-color: white"
+                >inter</buttom
+              >
             </form>
             <div class="cho-container"></div>
           </div>
@@ -125,33 +164,42 @@
               {{ data.quantity_max }}
             </form>
           </div>
-
-          <div class="row">
-            <div
-              class="col"
-              v-for="i in data.guields"
-              :key="i"
-              @click="() => activeform(i)"
-            >
+          <div style="display: flex; justify-content: center">
+            <div class="grip">
               <div
-                class="guildca card col-3 m-5 justify-content-center"
-                v-if="i.active == data.filtertype || data.filtertype == 'all'"
+                v-for="i in data.guields"
+                :key="i"
+                @click="() => activeform(i)"
               >
-                <div class="d-flex">
-                  <div>
-                    <div class="solid">
-                      <span class="solidt">Id: </span> {{ i.id }}
+                <div
+                  class="guildca card col-3 m-5 justify-content-center"
+                  v-if="i.active == data.filtertype || data.filtertype == 'all'"
+                >
+                  <div class="d-flex">
+                    <div>
+                      <div class="solid">
+                        <span class="solidt">Id: </span> {{ i.id }}
+                      </div>
+                      <div>Name: {{ router.params.name }}</div>
                     </div>
-                    <div>Name: {{ router.params.name }}</div>
-                    <div class="solid">
-                      <span class="solidt">Actual_quantity: </span>
-                      {{ i.actual_quantity }}
-                    </div>
-                    <div>Discount: {{ i.discount }}</div>
-                    <div>Quantity_max: {{ i.quantity_max }}</div>
-                    <div>State: {{ i.active }}</div>
-                    <div>Counter: {{ i.active }}</div>
                   </div>
+                </div>
+                <div
+                  style="
+                    background: #6affaf;
+                    border-radius: 10px;
+                    margin-top: 6px;
+                    margin-top: 6px;
+                    background-color: #6affaf;
+                    color: rgba(94, 94, 94, 1);
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                  "
+                >
+                  Unirme
                 </div>
               </div>
             </div>
@@ -211,12 +259,15 @@ const mp = new MercadoPago("APP_USR-450cc8e7-ba80-45d6-a44d-81346f710cc5", {
 
 const getguields = async () => {
   const id = router.params.id;
-  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/guielditem/${id}`, {
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/guielditem/${id}`,
+    {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
 
   const da = await res.json();
   data.guields = da;
@@ -255,14 +306,17 @@ const craete_order = async () => {
     quantity: Number(data.quantity),
   };
 
-  const res1 = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment`, {
-    method: "POST",
-    body: JSON.stringify(payload1),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res1 = await fetch(
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload1),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   const da1 = await res1.json();
 
   mp.checkout({
@@ -287,14 +341,17 @@ const craete_guild = async () => {
     life_time: Number(data.life_time),
   };
 
-  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment_creation`, {
-    method: "POST",
-    body: JSON.stringify(payload),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/generate_payment_creation`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   const da1 = await res.json();
   data.form = false;
   getguields();
@@ -310,12 +367,15 @@ const craete_guild = async () => {
 };
 
 const get_item = async () => {
-  const res = await fetch(`https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/item/${router.params.id}`, {
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await fetch(
+    `https://ghdu2sxv4bz7z6tvvzkxkoqjgq0idxxi.lambda-url.sa-east-1.on.aws/item/${router.params.id}`,
+    {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
 
   const da = await res.json();
 
@@ -335,29 +395,35 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped lang="scss">
+.grip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+
+ion-content {
+  --background: #f5f5f5;
+}
 .guield {
-  background-color: rgb(255, 255, 255);
+  background-color: #f5f5f5;
 }
 .guildca {
   padding: 10px;
-  width: 280px;
+  width: 146px;
+  height: 112px;
   color: black;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
-.product_header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  margin: 25px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #d9d9d9 0%, rgba(242, 242, 242, 0) 100%);
 }
 
 .product_img {
   border-radius: 20px;
   width: 100%;
+  margin-top: 8px;
 }
 
 .formitem {
@@ -370,22 +436,13 @@ onMounted(() => {
 }
 .titleguield {
   text-align: center;
-  font-size: 40px;
-  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #5e5e5e;
 }
 
-.alm {
-  display: flex;
-  justify-content: space-between;
-}
 .arrow {
   text-align: right;
-}
-.bx-arrow-back {
-  font-size: 40px;
-  background-color: white;
-  color: black;
-  border-radius: 4px;
 }
 
 .fit {
